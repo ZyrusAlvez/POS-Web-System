@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose"
 import inventoryRouter from "./routes/inventoryRoute.mjs";
+import productRouter from "./routes/productRoute.mjs";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/inventory", inventoryRouter)
+app.use("/api/product", productRouter)
 
 mongoose
   .connect(DATABASE)
