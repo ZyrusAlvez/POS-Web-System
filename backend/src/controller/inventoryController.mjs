@@ -33,16 +33,20 @@ const inventoryController = {
     }
   },
 
-  // Update an item based on its name
+  // Update an item based on its name and decrement the amount
   updateItemByName: async (req, res) => {
     try {
       const { name } = req.params;
       const { amount } = req.body;
 
-      // Find and update the item
+      if (!amount || amount <= 0) {
+        return res.status(400).send({ message: "Invalid amount provided" });
+      }
+
+      // Find and update the item, decrementing the amount
       const updatedItem = await inventoryModel.findOneAndUpdate(
         { name }, // Query by name
-        { amount }, // Update fields
+        { $inc: { amount: -amount } }, // Decrement the amount
         { new: true } // Return the updated document
       );
 
@@ -50,11 +54,21 @@ const inventoryController = {
         return res.status(404).send({ message: "Item not found" });
       }
 
+      if (updatedItem.amount < 0) {
+        // If amount becomes negative, undo the update and return an error
+        await inventoryModel.findOneAndUpdate(
+          { name },
+          { $inc: { amount } } // Revert the decrement
+        );
+        return res.status(400).send({ message: "Insufficient stock" });
+      }
+
       res.status(200).send(updatedItem);
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
   },
+
 
   // Find items based on their classification
   getItemByClassification: async (req, res) => {

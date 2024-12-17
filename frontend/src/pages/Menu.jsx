@@ -1,11 +1,9 @@
-import SideBar from "../layout/SideBar.jsx"
+import Inventory from "../components/Inventory"
 
 const Menu = () => {
   return (
-    <div className="flex flex-col">
-      <SideBar />
-      <div></div>
-      <div></div>
+    <div>
+      <Inventory />
     </div>
   )
 }
