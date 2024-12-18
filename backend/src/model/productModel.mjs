@@ -20,6 +20,10 @@ const productSchema = new mongoose.Schema(
     price22oz: {
       type: Number,
       required: true,
+    },
+    ingredients : {
+      type: Object,
+      default: {}
     }
   }
 );

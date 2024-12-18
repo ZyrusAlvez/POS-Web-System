@@ -19,13 +19,13 @@ const Inventory = () => {
 
   function handleSubmit() {
     addItem(name, amount, classification)
-      .then((result) => alert(result.name, "added"))
+      .then((result) => alert(result.data.name))
       .catch((error) => alert(error.message));
   }
 
   useEffect(() => {
     getItemByClassification("testing")
-      .then((result) => setItems(result))
+      .then((result) => setItems(result.data))
       .catch((error) => console.log(error));
   }, [handleSubmit]);
 

@@ -4,12 +4,12 @@ const inventoryController = {
   // Add an item to the database
   addItem: async (req, res) => {
     try {
-      const { name, amount, classification } = req.body;
+      const { name, amount, classification, denominator } = req.body;
 
       // Create a new item
-      const newItem = await inventoryModel.create({ name, amount, classification });
+      const newItem = await inventoryModel.create({ name, amount, classification, numerator: denominator, denominator });
 
-      res.status(201).send(newItem);
+      res.status(201).send({ message: "Item  added", data : newItem });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
@@ -27,47 +27,65 @@ const inventoryController = {
         return res.status(404).send({ message: "Item not found" });
       }
 
-      res.status(200).send(item);
+      res.status(200).send({ message: "Item found", data : item });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
   },
 
-  // Update an item based on its name and decrement the amount
   updateItemByName: async (req, res) => {
     try {
       const { name } = req.params;
-      const { amount } = req.body;
-
-      if (!amount || amount <= 0) {
-        return res.status(400).send({ message: "Invalid amount provided" });
+      const { decrement } = req.body;
+  
+      if (!decrement || decrement <= 0) {
+        return res.status(400).send({ message: "Invalid decrement value" });
       }
-
-      // Find and update the item, decrementing the amount
-      const updatedItem = await inventoryModel.findOneAndUpdate(
-        { name }, // Query by name
-        { $inc: { amount: -amount } }, // Decrement the amount
-        { new: true } // Return the updated document
-      );
-
-      if (!updatedItem) {
+  
+      // Find the item first
+      const item = await inventoryModel.findOne({ name });
+      if (!item) {
         return res.status(404).send({ message: "Item not found" });
       }
-
-      if (updatedItem.amount < 0) {
-        // If amount becomes negative, undo the update and return an error
-        await inventoryModel.findOneAndUpdate(
+  
+      let updatedNumerator = item.numerator - decrement;
+  
+      // Check if numerator goes below or equals 0
+      if (updatedNumerator <= 0) {
+        // Decrement amount and reset numerator
+        const remainingNumerator = item.denominator + updatedNumerator; // Reset numerator to denominator value
+        
+        const updatedItem = await inventoryModel.findOneAndUpdate(
           { name },
-          { $inc: { amount } } // Revert the decrement
+          {
+            $inc: { amount: -1 },
+            numerator: remainingNumerator,
+          },
+          { new: true }
         );
-        return res.status(400).send({ message: "Insufficient stock" });
+  
+        return res.status(200).send({
+          message: "Amount decremented and numerator reset",
+          data: updatedItem,
+        });
       }
-
-      res.status(200).send(updatedItem);
+  
+      // If numerator doesn't hit 0, just decrement numerator
+      const updatedItem = await inventoryModel.findOneAndUpdate(
+        { name },
+        { $inc: { numerator: -decrement } },
+        { new: true }
+      );
+  
+      res.status(200).send({
+        message: "Numerator decremented",
+        data: updatedItem,
+      });
     } catch (error) {
-      res.status(400).send({ message: error.message });
+      res.status(500).send({ message: error.message });
     }
   },
+  
 
 
   // Find items based on their classification
@@ -82,7 +100,7 @@ const inventoryController = {
         return res.status(404).send({ message: "No items found for this classification" });
       }
 
-      res.status(200).send(items);
+      res.status(200).send({ message: "Items found", data : items });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
@@ -100,7 +118,7 @@ const inventoryController = {
         return res.status(404).send({ message: "Item not found" });
       }
 
-      res.status(200).send(deletedItem);
+      res.status(200).send({ message: "Item succesfully deleted", data : deletedItem});
     } catch (error) {
       res.status(400).send({ message: error.message });
     }

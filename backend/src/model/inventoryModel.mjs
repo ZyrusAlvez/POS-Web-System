@@ -17,6 +17,14 @@ const inventorySchema = new mongoose.Schema(
       required: true,
       lowercase: true,
     },
+    numerator : {
+      type: Number,
+      default: 0
+    },
+    denominator : {
+      type: Number,
+      default: 0
+    },
   }
 );
 

@@ -9,7 +9,7 @@ const productController = {
       // Create a new item
       const newItem = await productModel.create({ name, classification, price16oz, price22oz });
 
-      res.status(201).send({ message: "Item added successfully", item: newItem });
+      res.status(201).send({ message: "Item added successfully", data: newItem });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
@@ -27,7 +27,7 @@ const productController = {
         return res.status(404).send({ message: "Item not found" });
       }
 
-      res.status(200).send(item);
+      res.status(200).send({ message: "Item found", data: item });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
@@ -45,7 +45,7 @@ const productController = {
         return res.status(404).send({ message: "No items found for this classification" });
       }
 
-      res.status(200).send(items);
+      res.status(200).send({ message: "Items found", data: items });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
@@ -63,7 +63,7 @@ const productController = {
         return res.status(404).send({ message: "Item not found" });
       }
 
-      res.status(200).send(deletedItem);
+      res.status(200).send({ message: "Item deleted", data: deletedItem });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
