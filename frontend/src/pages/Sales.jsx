@@ -1,8 +1,10 @@
-import React from 'react'
+import SideBar from "../layout/SideBar"
 
 const Sales = () => {
   return (
-    <div>Sales</div>
+    <div>
+      <SideBar />
+    </div>
   )
 }
 

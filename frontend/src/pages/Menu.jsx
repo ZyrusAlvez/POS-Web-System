@@ -1,6 +1,6 @@
-import Inventory from "../components/Inventory"
+import SideBar from "../layout/SideBar.jsx";
 import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
@@ -14,11 +14,9 @@ const Menu = () => {
   }
 
   return (
-    user ? <div>
-      <h1 className="text-6xl">Hello {user.username}</h1>
-      <button onClick={handleLogout}>log out</button>
-    </div> : <h1>Loading</h1>
-
+    <div>
+      <SideBar/>
+    </div>
   )
 }
 

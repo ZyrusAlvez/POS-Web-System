@@ -5,6 +5,7 @@ import LoginPage from "./pages/Login";
 import Menu from "./pages/Menu";
 import Sales from "./pages/Sales";
 import Inventory from "./pages/Inventory";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -35,6 +36,14 @@ const App = () => {
       element: (
         <ProtectedRoute>
           <Inventory />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: "/settings",
+      element: (
+        <ProtectedRoute>
+          <Settings />
         </ProtectedRoute>
       )
     },

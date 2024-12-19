@@ -1,6 +1,6 @@
 import SideBar from "../layout/SideBar"
 
-const Inventory = () => {
+const Settings = () => {
   return (
     <div>
       <SideBar />
@@ -8,4 +8,4 @@ const Inventory = () => {
   )
 }
 
-export default Inventory
+export default Settings
