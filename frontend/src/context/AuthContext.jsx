@@ -38,14 +38,10 @@ export const AuthProvider = ({ children }) => {
         "http://localhost:3000/api/user/log-in", 
         credentials, 
         { withCredentials: true } // Pass cookies
-      );
-      
+      );      
       setUser(response.data.user); // Set logged-in user
-      console.log(response)
-      console.log(response.data.user)
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
-      alert("Login Failed")
       throw error; // Propagate error to the component for UI feedback
     }
   };
