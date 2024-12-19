@@ -10,7 +10,7 @@ const SideBar = () => {
   const location = useLocation();
   console.log(location.pathname)
   return (
-    <div className='flex flex-col gap-12 bg-red h-screen fixed w-[15%] bg-primary items-center min-w-[150px]'>
+    <div className='flex flex-col gap-12 bg-red h-screen w-[15vw] bg-primary items-center min-w-[150px] fixed'>
       <img src={logo}/>
       <SidebarButton name={"Menu"} icon={<BiSolidFoodMenu/>} url={"/"}/>
       <SidebarButton name={"Sales"} icon={<GoGraph/>} url={"/sales"}/>
