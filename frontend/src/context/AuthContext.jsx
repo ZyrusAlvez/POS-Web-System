@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }) => {
       console.log(response.data.user)
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
+      alert("Login Failed")
       throw error; // Propagate error to the component for UI feedback
     }
   };

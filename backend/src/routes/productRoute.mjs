@@ -4,8 +4,8 @@ import express from "express"
 const productRouter = express.Router()
 
 productRouter.post("/add-item", productController.addItem);
-productRouter.get("/get-by-name/:name", productController.getItemByName)
-productRouter.get("/get-by-classification/:classification", productController.getItemByClassification)
-productRouter.delete("/delete-by-name/:name", productController.deleteItemByName)
+productRouter.get("/get-by-id/:_id", productController.getItemById)
+productRouter.get("/get-by-category/:category", productController.getItemByCategory)
+productRouter.delete("/delete-by-id/:_id", productController.deleteItemById)
 
 export default productRouter

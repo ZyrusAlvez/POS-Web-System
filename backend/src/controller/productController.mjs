@@ -4,10 +4,10 @@ const productController = {
   // Add an item to the database
   addItem: async (req, res) => {
     try {
-      const { name, classification, price16oz, price22oz } = req.body;
+      const { name, category, price_16oz, price_22oz, ingredients_16oz, ingredients_22oz} = req.body;
 
       // Create a new item
-      const newItem = await productModel.create({ name, classification, price16oz, price22oz });
+      const newItem = await productModel.create({ name, category, price_16oz, price_22oz, ingredients_16oz, ingredients_22oz});
 
       res.status(201).send({ message: "Item added successfully", data: newItem });
     } catch (error) {
@@ -16,12 +16,12 @@ const productController = {
   },
 
   // Get an item based on its name
-  getItemByName: async (req, res) => {
+  getItemById: async (req, res) => {
     try {
-      const { name } = req.params;
+      const { _id } = req.params;
 
       // Find the item by name
-      const item = await productModel.findOne({ name }); // Query by name
+      const item = await productModel.findOne({ _id }); // Query by name
 
       if (!item) {
         return res.status(404).send({ message: "Item not found" });
@@ -34,12 +34,12 @@ const productController = {
   },
 
   // Find items based on their classification
-  getItemByClassification: async (req, res) => {
+  getItemByCategory: async (req, res) => {
     try {
-      const { classification } = req.params;
+      const { category } = req.params;
 
       // Find items with the given classification
-      const items = await productModel.find({ classification });
+      const items = await productModel.find({ category });
 
       if (items.length === 0) {
         return res.status(404).send({ message: "No items found for this classification" });
@@ -52,12 +52,12 @@ const productController = {
   },
 
   // Delete an item by name
-  deleteItemByName: async (req, res) => {
+  deleteItemById: async (req, res) => {
     try {
-      const { name } = req.params;
+      const { _id } = req.params;
 
       // Find and delete the item
-      const deletedItem = await productModel.findOneAndDelete({ name });
+      const deletedItem = await productModel.findOneAndDelete({ _id });
 
       if (!deletedItem) {
         return res.status(404).send({ message: "Item not found" });

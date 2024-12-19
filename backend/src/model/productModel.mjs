@@ -4,27 +4,29 @@ const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true,
       required: true,
-      lowercase: true,
     },
-    classification: {
+    category: {
       type: String,
       required: true,
       lowercase: true,
     },
-    price16oz: {
+    price_16oz: {
       type: Number,
       required: true,
     },
-    price22oz: {
+    price_22oz: {
       type: Number,
       required: true,
     },
-    ingredients : {
+    ingredients_16oz : {
       type: Object,
       default: {}
-    }
+    },
+    ingredients_22oz : {
+      type: Object,
+      default: {}
+    },
   }
 );
 

@@ -9,8 +9,8 @@ const Menu = () => {
   const navigate = useNavigate()
 
   function handleLogout(){
-    navigate("/login")
     logout()
+    navigate("/login")
   }
 
   return (

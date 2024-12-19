@@ -16,12 +16,12 @@ const inventoryController = {
   },
 
   // Get an item based on its name
-  getItemByName: async (req, res) => {
+  getItemById: async (req, res) => {
     try {
-      const { name } = req.params;
+      const { _id } = req.params;
 
       // Find the item by name
-      const item = await inventoryModel.findOne({ name }); // Query by name
+      const item = await inventoryModel.findOne({ _id }); // Query by name
 
       if (!item) {
         return res.status(404).send({ message: "Item not found" });
@@ -35,8 +35,7 @@ const inventoryController = {
 
   updateItemByName: async (req, res) => {
     try {
-      const { name } = req.params;
-      const { decrement } = req.body;
+      const { name, decrement } = req.body;
   
       if (!decrement || decrement <= 0) {
         return res.status(400).send({ message: "Invalid decrement value" });
@@ -107,12 +106,12 @@ const inventoryController = {
   },
 
   // Delete an item by name
-  deleteItemByName: async (req, res) => {
+  deleteItemById: async (req, res) => {
     try {
-      const { name } = req.params;
+      const { _id } = req.params;
 
       // Find and delete the item
-      const deletedItem = await inventoryModel.findOneAndDelete({ name });
+      const deletedItem = await inventoryModel.findOneAndDelete({ _id });
 
       if (!deletedItem) {
         return res.status(404).send({ message: "Item not found" });
