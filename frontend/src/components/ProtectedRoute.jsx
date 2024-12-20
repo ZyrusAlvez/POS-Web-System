@@ -18,7 +18,7 @@ const ProtectedRoute = ({ children }) => {
   }, []); // Dependency ensures this runs once unless `checkAuth` changes
 
   // Show a loading spinner or placeholder during the check
-  if (loading) return <div className="h-screen flex items-center justify-center">loading....</div>
+  if (loading) return <div className="h-screen flex items-center justify-center text-5xl text-center font-bold text-dark">Authenticating... <br/> Please Wait</div>
 
   // Redirect to login if not authenticated
   return isAuthenticated ? children : <Navigate to="/login" />;

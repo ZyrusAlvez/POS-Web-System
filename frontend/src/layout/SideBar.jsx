@@ -7,8 +7,6 @@ import { RiSettingsFill } from "react-icons/ri";
 import SidebarButton from "../components/ui/SidebarButton";
 
 const SideBar = () => {
-  const location = useLocation();
-  console.log(location.pathname)
   return (
     <div className='flex flex-col gap-12 bg-red h-screen w-[15vw] bg-primary items-center min-w-[150px] fixed'>
       <img src={logo}/>

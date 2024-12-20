@@ -1,11 +1,26 @@
-import {useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import { PiPlusCircleFill, PiMinusCircleFill } from "react-icons/pi";
 
-const Card = ({product}) => {
+const Card = ({product, setBilling, billing}) => {
   const [price, setPrice] = useState(product.price_16oz)
   const [quantity, setQuantity] = useState(1)
   const [radbtn, setRadbtn] = useState('16oz')
+  const [addOns, setAddOns] = useState([])
   const cupPrice = useRef(product.price_16oz)
+
+  // resey price and quantity when product/category changes
+  useEffect(() => {
+    if (!product.price_16oz) {
+      setPrice(product.price_22oz)  
+      setRadbtn('22oz')
+      cupPrice.current = product.price_22oz
+    }else{
+      setPrice(product.price_16oz)
+      setRadbtn('16oz')
+      cupPrice.current = product.price_16oz
+    }
+    setQuantity(1)
+  }, [product, billing])
 
   function handleQuantity(variant) {
     let newQuantity = quantity;
@@ -30,6 +45,10 @@ const Card = ({product}) => {
     }
   }
 
+  function handleAdd(){
+    setBilling((prev) => [...prev, {name: product.name, quantity: quantity, price: price, addOns: addOns}])
+  }
+
   return (
     <div className='w-[90%] h-[250px] bg-light rounded-2xl flex items-center font-bold'>
       <div className="w-[40%] h-full flex flex-col gap-6 mt-12">
@@ -47,15 +66,18 @@ const Card = ({product}) => {
             />
             <PiPlusCircleFill onClick={() => handleQuantity("add")} className='text-4xl cursor-pointer active:text-primary'/>
           </div>
-          <button className='rounded-full w-32 bg-primary h-8 text-sm active:bg-dark active:text-light'>ADD</button>
+          <button className='rounded-full w-32 bg-primary h-8 text-sm active:bg-dark active:text-light' onClick={handleAdd}>ADD</button>
         </div>
       </div>
-      <div className='flex-1 h-[80%] border-l-2 border-primary'>
-        <div className='flex flex-col'>
+      <div className='flex-1 h-[80%] border-l-2 border-primary text-lg'>
+        <div className='flex flex-col ml-4'>
           <h1>Size</h1>
-          <div className='flex gap-4'>
-            <button className={`w-12 h-12 rounded-full text-black text-sm ${radbtn === '16oz' ? 'bg-primary': 'bg-white'}`} onClick={() => {setRadbtn('16oz'); cupPrice.current = product.price_16oz; setPrice(cupPrice.current * quantity)}}>16oz</button>
+          <div className='flex gap-4 mt-2'>
+            <button className={`w-12 h-12 rounded-full text-black text-sm ${radbtn === '16oz' ? 'bg-primary': 'bg-white'} ${product.price_16oz ? 'block' : 'hidden'}`} onClick={() => {setRadbtn('16oz'); cupPrice.current = product.price_16oz; setPrice(cupPrice.current * quantity)}}>16oz</button>
             <button className={`w-12 h-12 rounded-full text-black text-sm ${radbtn === '22oz' ? 'bg-primary': 'bg-white'}`} onClick={() => {setRadbtn('22oz'); cupPrice.current = product.price_22oz; setPrice(cupPrice.current * quantity)}}>22oz</button>
+          </div>
+          <div>
+            <h1 className='mt-2'>Add Ons</h1>
           </div>
         </div>
       </div>

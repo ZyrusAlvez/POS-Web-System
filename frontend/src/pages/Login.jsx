@@ -39,7 +39,7 @@ const LoginPage = () => {
         loading ? "opacity-50" : ""
       }`}
     >
-      <div className="flex flex-col bg-primary w-[45%] h-[45%] items-center justify-center gap-4 rounded-3xl shadow-2xl relative min-w-[500px]">
+      <div className="flex flex-col bg-primary w-[45%] h-[45%] items-center justify-center gap-4 rounded-3xl shadow-hard relative min-w-[500px]">
         <img src={hat} className="w-52 absolute -top-16 -left-20" />
         <img src={logo} className="w-20" />
         
