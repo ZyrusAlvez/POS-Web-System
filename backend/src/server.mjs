@@ -16,7 +16,7 @@ const app = express();
 app.use(cookieParser()); // Add this middleware to parse cookies
 app.use(
   cors({
-    origin: "http://localhost:5174", // Explicitly allow your frontend's origin
+    origin: true, // Allow all origins
     credentials: true, // Allow cookies and credentials
   })
 );

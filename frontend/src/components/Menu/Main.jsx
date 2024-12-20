@@ -17,7 +17,7 @@ const Main = () => {
       <Header />
       <div className='flex flex-col w-full items-center gap-8'>
         {
-          products.map((e, i) => <Card key={i} name={e.name}/>)
+          products.map((e, i) => <Card key={i} product={e}/>)
         }
       </div>
     </div>
