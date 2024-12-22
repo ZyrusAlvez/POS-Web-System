@@ -4,7 +4,7 @@ import Button from "../../components/ui/Button"
 import { getAllUsers } from "../../api/user"
 import { useEffect, useState } from "react"
 
-const ViewProduct = () => {
+const ViewEmployee = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -37,4 +37,4 @@ const ViewProduct = () => {
   )
 }
 
-export default ViewProduct
+export default ViewEmployee

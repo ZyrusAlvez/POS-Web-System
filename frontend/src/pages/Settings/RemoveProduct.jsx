@@ -7,7 +7,7 @@ const RemoveProduct = () => {
       <SideBar />
       <div className="w-[15vw]" />
       <Header/>
-      
+    
     </div>
   )
 }

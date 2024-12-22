@@ -20,7 +20,7 @@ const Settings = () => {
           <h1 className="text-black text-lg font-bold">EMPLOYEES</h1>
           <Button style={"w-[95%] p-2"} onClick={() => {navigate("./view-employees")}}>VIEW EMPLOYEES</Button>
           <Button style={"w-[95%] p-2"} onClick={() => {navigate("./add-employee")}}>ADD NEW EMPLOYEES</Button>
-          <Button style={"w-[95%] p-2"}  onClick={() => {navigate("./remove-employee")}}>REMOVE NEW EMPLOYEES</Button>
+          <Button style={"w-[95%] p-2"}  onClick={() => {navigate("./remove-employee")}}>REMOVE EMPLOYEES</Button>
         </div>
       </div>
     </div>

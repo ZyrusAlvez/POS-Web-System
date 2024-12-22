@@ -11,3 +11,13 @@ export async function getAllUsers() {
     throw error;
   }
 }
+
+export async function removeUser(id) {
+  try {
+    const response = await axios
+      .delete(`${url}/delete-user/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

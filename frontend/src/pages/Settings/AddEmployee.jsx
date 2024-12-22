@@ -6,8 +6,9 @@ const AddEmployee = () => {
     <div className="flex h-screen">
       <SideBar />
       <div className="w-[15vw]" />
-      
-      <Header/>
+      <div className="flex flex-col flex-grow items-center ">
+        <Header/>
+      </div>
     </div>
   )
 }
