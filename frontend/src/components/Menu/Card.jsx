@@ -64,6 +64,12 @@ const Card = ({ product, setBilling, billing }) => {
         ? prevAddOns.filter((a) => a !== addOn)
         : [...prevAddOns, addOn]
     );
+
+    if (addOns.includes(addOn)) {
+      setPrice((prevPrice) => prevPrice - addOn.price);
+    }else{
+      setPrice((prevPrice) => prevPrice + addOn.price);
+    }
   }
 
   return (
@@ -135,7 +141,7 @@ const Card = ({ product, setBilling, billing }) => {
                   className={`p-2 cursor-pointer ${
                     addOns.includes(e) ? 'bg-primary text-white shadow-lit' : 'bg-white'
                   }`}
-                  onClick={() => {toggleAddOn(e); setPrice((prev) => prev + e.price)}}
+                  onClick={() => toggleAddOn(e)}
                 >
                   {e.name}
                 </h1>
