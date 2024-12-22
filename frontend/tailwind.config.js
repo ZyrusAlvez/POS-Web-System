@@ -12,7 +12,8 @@ export default {
         light: "#F8EFE0"
       },
       boxShadow: {
-        'hard': '8px 8px 5px 0 rgba(0, 0, 0, 0.4)',
+        hard: '8px 8px 5px 0 rgba(0, 0, 0, 0.4)',
+        lit: '3px 3px 3px 0 rgba(0, 0, 0, 0.4)',
       }
     },
   },

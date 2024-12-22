@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser"
 import inventoryRouter from "./routes/inventoryRoute.mjs";
 import productRouter from "./routes/productRoute.mjs";
 import userRouter from "./routes/userRoute.mjs";
+import addonRouter from "./routes/addonRoute.mjs";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use("/api/inventory", inventoryRouter)
 app.use("/api/product", productRouter)
 app.use("/api/user", userRouter)
+app.use("/api/add-on", addonRouter)
 
 mongoose
   .connect(DATABASE)
