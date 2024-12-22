@@ -1,5 +1,4 @@
 import logo from "../assets/logo.png"
-import { useLocation } from 'react-router-dom';
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { GoGraph } from "react-icons/go";
 import { MdOutlineInventory } from "react-icons/md";

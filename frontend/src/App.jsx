@@ -1,27 +1,31 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/Login";
 import Menu from "./pages/Menu";
 import Sales from "./pages/Sales";
 import Inventory from "./pages/Inventory";
-import Settings from "./pages/Settings";
-import NotFound from "./pages/NotFound";
+import Settings from "./pages/Settings/Settings";
+import AddEmployee from "./pages/Settings/AddEmployee";
+import AddProduct from "./pages/Settings/AddProduct";
+import ViewEmployee from "./pages/Settings/ViewEmployee";
+import RemoveProduct from "./pages/Settings/RemoveProduct";
+import RemoveEmployee from "./pages/Settings/RemoveEmployee";
 
 const App = () => {
-
   const router = createBrowserRouter([
     {
       path: "/login",
-      element: <LoginPage />
+      element: <LoginPage />,
     },
     {
       path: "/",
       element: (
         <ProtectedRoute>
-          <Menu/>
+          <Menu />
         </ProtectedRoute>
-      )
+      ),
     },
     {
       path: "/sales",
@@ -29,7 +33,7 @@ const App = () => {
         <ProtectedRoute>
           <Sales />
         </ProtectedRoute>
-      )
+      ),
     },
     {
       path: "/inventory",
@@ -37,7 +41,7 @@ const App = () => {
         <ProtectedRoute>
           <Inventory />
         </ProtectedRoute>
-      )
+      ),
     },
     {
       path: "/settings",
@@ -45,12 +49,52 @@ const App = () => {
         <ProtectedRoute>
           <Settings />
         </ProtectedRoute>
-      )
+      ),
+    },
+    {
+      path: "/settings/add-product",
+      element: (
+        <ProtectedRoute>
+          <AddProduct />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings/remove-product",
+      element: (
+        <ProtectedRoute>
+          <RemoveProduct />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings/view-employees",
+      element: (
+        <ProtectedRoute>
+          <ViewEmployee />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings/add-employee",
+      element: (
+        <ProtectedRoute>
+          <AddEmployee />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings/remove-employee",
+      element: (
+        <ProtectedRoute>
+          <RemoveEmployee />
+        </ProtectedRoute>
+      ),
     },
     {
       path: "*",
-      element: <NotFound />
-    }
+      element: <NotFound />,
+    },
   ]);
 
   return (

@@ -7,7 +7,7 @@ const SidebarButton = ({ name, icon, url }) => {
 
   return (
     <div
-      className={`bg-light font-bold w-[80%] h-12 rounded-xl flex justify-start items-center gap-4 pl-2 cursor-pointer text-3xl ${location.pathname === url ? "shadow-hard" : ""}`}
+      className={`bg-light font-bold w-[80%] h-12 rounded-xl flex justify-start items-center gap-4 pl-2 cursor-pointer text-3xl ${"/" + location.pathname.split('/')[1] === url ? "shadow-hard" : ""}`}
       onClick={() => navigate(url)}
     >
       {icon}

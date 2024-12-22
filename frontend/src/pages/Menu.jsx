@@ -1,17 +1,9 @@
 import SideBar from "../layout/SideBar.jsx";
 import Main from "../components/Menu/Main.jsx";
 import Transaction from "../components/Menu/Transaction.jsx";
-import { useContext, useState } from "react";
-import AuthContext from "../context/authContext.jsx";
-import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 const Menu = () => {
-
-  const { user, logout } = useContext(AuthContext);
-  const navigate = useNavigate()
   const [billing, setBilling] = useState([])
-
-
 
   return (
     // div was used to imitate the width of the position:fixed component
