@@ -11,3 +11,13 @@ export async function getAllItems() {
     throw error;
   }
 }
+
+export async function deleteAddOn(id) {
+  try {
+    const response = await axios
+      .delete(`${url}/delete-item/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

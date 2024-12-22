@@ -41,7 +41,22 @@ const addonControl = {
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
-  }
+  },
+
+  deleteItem: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const item = await addonModel.findByIdAndDelete(id);
+      if (!item) {
+        return res.status(404).json({ message: 'Item not found' });
+      }
+
+      res.status(200).json({ message: 'Item deleted successfully', item });
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  },
 }
 
 export default addonControl;

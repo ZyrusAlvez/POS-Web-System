@@ -15,7 +15,7 @@ export async function getAllUsers() {
 export async function removeUser(id) {
   try {
     const response = await axios
-      .delete(`${url}/delete-user/${id}`);
+      .delete(`${url}/delete-by-id/${id}`);
     return response.data;
   } catch (error) {
     throw error;

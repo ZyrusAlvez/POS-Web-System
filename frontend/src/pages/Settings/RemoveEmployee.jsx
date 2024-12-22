@@ -28,7 +28,7 @@ const RemoveEmployee = () => {
   return (
     <div className="flex h-screen">
       <SideBar />
-      <div className="w-[15vw]" />
+      <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col flex-grow items-center ">
         <Header/>
 

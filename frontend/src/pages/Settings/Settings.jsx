@@ -8,7 +8,7 @@ const Settings = () => {
   return (
     <div className="flex h-screen">
       <SideBar />
-      <div className="w-[15vw]" />
+      <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col items-center justify-start flex-grow gap-8 mt-4">
         <h1 className="text-4xl w-full text-start font-bold pl-4">SETTINGS</h1>
         <div className="h-auto w-[80%] bg-primary rounded-[2rem] flex flex-col justify-center items-center gap-4 py-8">

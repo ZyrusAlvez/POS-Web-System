@@ -12,3 +12,14 @@ export async function getItemByCategory(category) {
     throw error;
   }
 }
+
+export async function deleteItem(id) {
+  try {
+    const response = await axios
+      .delete(`${url}/delete-by-id/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
