@@ -18,13 +18,14 @@ const Main = ({billing, setBilling}) => {
     <div className="flex-grow">
       <Header setCategory={setCategory}/>
 
-      {laoding && <h1 className='w-full h-full text-3xl'>Loading...</h1>} 
+      {laoding && <h1 className='w-full h-full text-3xl text-center'>Loading...</h1>} 
 
       <div className='flex flex-col w-full items-center gap-8'>
         {
           products.map((e, i) => <Card key={i} product={e} setBilling={setBilling} billing={billing}/>)
         }
       </div>
+
     </div>
   )
 }

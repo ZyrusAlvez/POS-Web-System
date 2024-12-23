@@ -8,11 +8,15 @@ const Menu = () => {
   return (
     // div was used to imitate the width of the position:fixed component
     <div className="flex justify-between">
+
       <SideBar/>
-      <div className="w-[15vw]"/>
+      <div className="w-[15vw] min-w-[150px]"/>
+
       <Main billing={billing} setBilling={setBilling}/>
-      <div className="w-[25vw]"/>
+
       <Transaction billing={billing} setBilling={setBilling}/>
+      <div className="w-[25vw] min-w-[200px]"/>
+      
     </div>
   )
 }

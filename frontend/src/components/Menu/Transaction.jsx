@@ -22,7 +22,7 @@ const Transaction = ({billing, setBilling}) => {
   }
 
   return (
-    <div className='h-screen bg-primary w-[25vw] fixed right-0 z-1 flex flex-col items-center gap-4 py-4 font-bold'>
+    <div className='h-screen bg-primary w-[25vw] fixed right-0 z-1 flex flex-col items-center gap-4 py-4 font-bold min-w-[200px]'>
       <div className="flex bg-white rounded-[2rem] w-[90%] h-[80px] shadow-hard items-center justify-center gap-8">
         <CgProfile className="text-5xl text-primary"/>
         <div className="font-extrabold text-sm">
