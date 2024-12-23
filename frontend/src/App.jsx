@@ -12,6 +12,7 @@ import AddProduct from "./pages/Settings/AddProduct";
 import ViewEmployee from "./pages/Settings/ViewEmployee";
 import RemoveProduct from "./pages/Settings/RemoveProduct";
 import RemoveEmployee from "./pages/Settings/RemoveEmployee";
+import EmployeeCard from "./pages/Settings/EmployeeCard";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -72,6 +73,14 @@ const App = () => {
       element: (
         <ProtectedRoute>
           <ViewEmployee />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings/view-employees/:id",
+      element: (
+        <ProtectedRoute>
+          <EmployeeCard />
         </ProtectedRoute>
       ),
     },

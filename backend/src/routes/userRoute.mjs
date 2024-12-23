@@ -9,5 +9,7 @@ userRouter.post("/register", userController.registerUser)
 userRouter.get("/check-auth", userController.checkAuth)
 userRouter.delete("/delete-user/:id", userController.deleteUser)
 userRouter.get("/get-all-users", userController.getAllUsers)
+userRouter.get("/get-user/:id", userController.getUser)
+userRouter.put("/reset-sales/:id", userController.resetSales)
 
 export default userRouter

@@ -31,3 +31,23 @@ export async function addUser(user) {
     throw error;
   }
 }
+
+export async function getUser(id) {
+  try {
+    const response = await axios
+      .get(`${url}/get-user/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function resetSales(id) {
+  try {
+    const response = await axios
+      .put(`${url}/reset-sales/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

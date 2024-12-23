@@ -3,9 +3,11 @@ import Header from "../../components/Settings/Header"
 import Button from "../../components/ui/Button"
 import { getAllUsers } from "../../api/user"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const ViewEmployee = () => {
   const [users, setUsers] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     getAllUsers()
@@ -26,7 +28,7 @@ const ViewEmployee = () => {
             users.map((e, i) => (
               <div key={i} className="bg-white w-[90%] rounded-full px-4 py-2 flex justify-between items-center">
                 <h1>{e.username}</h1>
-                <Button style='px-4 py-2 font-normal text-sm font-bold'>View</Button>
+                <Button style='px-4 py-2 font-normal text-sm font-bold' onClick={() => navigate(`./${e._id}`)}>View</Button>
               </div>
             ))
           }
