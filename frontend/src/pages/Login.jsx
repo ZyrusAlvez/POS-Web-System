@@ -3,13 +3,12 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import hat from "../assets/hat.png";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Loading from "../components/Loading";
+import InputPassword from "../components/ui/InputPassword";
 
 const LoginPage = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [wrongpass, setWrongpass] = useState(false);
   const [credentials, setCredentials] = useState({
@@ -42,45 +41,23 @@ const LoginPage = () => {
       <div className="flex flex-col bg-primary w-[45%] h-[45%] items-center justify-center gap-4 rounded-3xl shadow-hard relative min-w-[500px]">
         <img src={hat} className="w-52 absolute -top-16 -left-20" />
         <img src={logo} className="w-20" />
-        
+
         {/* Conditional Rendering for Log-in form and Wrong Pass UI */}
         {!wrongpass ? (
           <>
             <input
               type="text"
               placeholder="Username"
-              value={credentials.username}
               onChange={(e) =>
                 setCredentials({ ...credentials, username: e.target.value })
               }
-              className="rounded-full py-2 px-3 w-[75%] text-lg font-bold"
+              className="rounded-full py-1 px-4 w-[75%] text-lg font-bold outline-none"
             />
-            <div className="flex items-center w-full justify-center">
-              <div className="relative w-[75%]">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  value={credentials.password}
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, password: e.target.value })
-                  }
-                  className="rounded-full py-2 px-3 w-full text-lg font-bold"
+           <InputPassword onChange={(e) =>
+                setCredentials({ ...credentials, password: e.target.value })}
+                placeholder='Password'
+                style='w-[75%] text-lg font-bold outline-none'
                 />
-
-                {/* Conditional Rendering for show and hide icon */}
-                {showPassword ? (
-                  <FaRegEye
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2 text-2xl"
-                  />
-                ) : (
-                  <FaRegEyeSlash
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2 text-2xl"
-                  />
-                )}
-              </div>
-            </div>
 
             <button
               onClick={(e) => {
