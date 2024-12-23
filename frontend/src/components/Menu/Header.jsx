@@ -19,12 +19,12 @@ const Header = ({setCategory}) => {
           <div className={`p-2 border-x-2 border-y-[1px] border-primary text-center relative ${frappucino ? 'bg-primary text-light' : 'bg-light text-black'}`} onClick={() => setFrappucino((f) => !f)}>
             <h1>Frappucino</h1>
             <div className={`absolute w-[170px] translate-x-40 -top-0 text-black ${frappucino ? 'block' : 'hidden'}`}>
-              <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light">Cheesecake Series</div>
-              <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light">Coffee Series</div>
-              <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light">Non-Coffee Series</div>
+              <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("frappuccino_cheesecake"); setCategoryClicked(false)}}>Cheesecake Series</div>
+              <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("frappuccino_coffee"); setCategoryClicked(false)}}>Coffee Series</div>
+              <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("frappuccino_non-coffee"); setCategoryClicked(false)}}>Non-Coffee Series</div>
             </div>
           </div>
-          <div className="p-2 border-x-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light">Coffee</div>
+          <div className="p-2 border-x-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("coffee"); setCategoryClicked(false)}}>Coffee</div>
           <div className="p-2 border-x-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("coolers"); setCategoryClicked(false)}}>Coolers</div>
           <div className="p-2 border-x-2 border-y-[1px] border-b-2 border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("fruit_tea"); setCategoryClicked(false)}}>Fruit Tea</div>
         </div>

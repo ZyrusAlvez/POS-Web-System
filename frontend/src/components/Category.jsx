@@ -4,15 +4,15 @@ const Category = ({category, setCategory}) => {
   return (
     <div className='flex gap-4 font-bold flex-wrap justify-center'>
       <div className={`w-auto p-4 bg-primary rounded-xl flex items-center cursor-pointer ${category === 'milktea' ? 'shadow-hard' : ''}`} onClick={() => setCategory('milktea')}>Milk Tea</div>
-      <div className='flex flex-col w-auto p-4 bg-primary rounded-xl items-center cursor-pointer'>
+      <div className={`flex flex-col w-auto p-4 bg-primary rounded-xl items-center cursor-pointer ${category === 'frappuccino_cheesecake' ? 'shadow-hard' : ''}`} onClick={() => setCategory('frappuccino_cheesecake')}>
         <h1>Cheesecake</h1>
         <h1 className='text-sm'>Frappucino</h1>
       </div>
-      <div className='flex flex-col w-auto p-4 bg-primary rounded-xl items-center cursor-pointer'>
+      <div className={`flex flex-col w-auto p-4 bg-primary rounded-xl items-center cursor-pointer ${category === 'frappuccino_coffee' ? 'shadow-hard' : ''}`} onClick={() => setCategory('frappuccino_coffee')}>
         <h1>Coffee</h1>
         <h1 className='text-sm'>Frappucino</h1>
       </div>
-      <div className='flex flex-col w-auto p-4 bg-primary rounded-xl items-center cursor-pointer'>
+      <div className={`flex flex-col w-auto p-4 bg-primary rounded-xl items-center cursor-pointer ${category === 'frappuccino_non-coffee' ? 'shadow-hard' : ''}`} onClick={() => setCategory('frappuccino_non-coffee')}>
         <h1>Non-Coffee</h1>
         <h1 className='text-sm'>Frappucino</h1>
       </div>
