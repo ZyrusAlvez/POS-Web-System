@@ -5,6 +5,7 @@ import Category from "../../components/Category";
 import Button from "../../components/ui/Button";
 import { getItemByCategory, deleteItem } from "../../api/product";
 import { getAllItems, deleteAddOn } from "../../api/addOn";
+import { toast } from "sonner";
 
 const RemoveProduct = () => {
   const [category, setCategory] = useState("milktea");
@@ -31,17 +32,19 @@ const RemoveProduct = () => {
     fetchItems();
   }, [category]);
 
-  const removeItem = useCallback(async (id) => {
-    try {
-      if (category === "add_ons") {
-        await deleteAddOn(id);
-      } else {
-        await deleteItem(id);
-      }
-      setItem((prevItems) => prevItems.filter((item) => item._id !== id));
-    } catch (err) {
-      console.log(err);
+  const removeItem = useCallback((id) => {
+    
+    if (category === "add_ons") {
+      deleteAddOn(id)
+        .then(() => toast.success("Item removed"))
+        .catch((err) => toast.error(err.message));
+    } else {
+      deleteItem(id)
+        .then(() => toast.success("Item removed"))
+        .catch((err) => toast.error(err.message));
     }
+    setItem((prevItems) => prevItems.filter((item) => item._id !== id));
+
   }, [category]);
 
   return (

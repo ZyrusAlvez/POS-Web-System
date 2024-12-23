@@ -10,7 +10,7 @@ const JWT_EXPIRY = process.env.JWT_EXPIRY;
 const userController = {
   registerUser: async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { username, password, sales, fullname } = req.body;
 
       // Check if user already exists
       const existingUser = await userModel.findOne({ username });
@@ -19,7 +19,7 @@ const userController = {
       }
 
       // Create new user
-      const newUser = await userModel.create({ username, password });
+      const newUser = await userModel.create({ username, password, sales, fullname });
 
       res.status(201).json({ message: 'User registered successfully', data: newUser.username });
     } catch (error) {

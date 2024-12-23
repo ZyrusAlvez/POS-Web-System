@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react"
 import { getAllUsers, removeUser } from "../../api/user"
 import Button from "../../components/ui/Button"
 import AuthContext from "../../context/authContext"
+import { toast } from 'sonner'
 
 const RemoveEmployee = () => {
   const [users, setUsers] = useState([])
@@ -15,13 +16,13 @@ const RemoveEmployee = () => {
       .catch((error) => console.error(error))
   }, [])
 
-  function handleRemove(id){    
+  function handleRemove(id){  
     if (id === user?.id){
-      alert("You cannot remove yourself")
+      toast.error("You cannot remove yourself")
     }else{
       removeUser(id)
-      .then(() => setUsers(users.filter((e) => e._id !== id)))
-      .catch((error) => console.error(error))
+      .then(() => {setUsers(users.filter((e) => e._id !== id)); toast.success("Employee removed")})
+      .catch((error) => toast.error(error.message))
     }
   }
 

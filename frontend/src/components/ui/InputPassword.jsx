@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-const InputPassword = ({start = false, style, onChange, placeholder}) => {
+const InputPassword = ({start = false, style, onChange, placeholder, value}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -12,6 +12,7 @@ const InputPassword = ({start = false, style, onChange, placeholder}) => {
           className="rounded-full py-1 px-4 w-full font-bold outline-none"
           onChange={onChange}
           placeholder={placeholder}
+          value={value}
         />
 
         {/* Conditional Rendering for show and hide icon */}

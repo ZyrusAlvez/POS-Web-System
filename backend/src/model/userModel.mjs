@@ -12,6 +12,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sales: {
+    type: Number,
+    default: 0,
+  },
+  fullname: {
+    type: {
+      surname: { type: String, required: true },
+      firstname: { type: String, required: true },
+      middleInitial: { type: String, required: false },
+    },
+  },
 });
 
 // Hash the password before saving the user
@@ -27,7 +38,6 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-// Create User Model
 const userModel = mongoose.model('User', userSchema);
 
 export default userModel;

@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
     verifyAuth();
   }, []); // Dependency ensures this runs once unless `checkAuth` changes
 
-  // Show a loading spinner or placeholder during the check
+  // placeholder during the check
   if (loading)
     return (
       <div className="h-screen flex items-center justify-center text-5xl text-center font-bold text-dark">

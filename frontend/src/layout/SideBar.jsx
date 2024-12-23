@@ -4,6 +4,7 @@ import { GoGraph } from "react-icons/go";
 import { MdOutlineInventory } from "react-icons/md";
 import { RiSettingsFill } from "react-icons/ri";
 import SidebarButton from "../components/ui/SidebarButton";
+import { Toaster } from 'sonner'
 
 const SideBar = () => {
   return (
@@ -13,6 +14,7 @@ const SideBar = () => {
       <SidebarButton name={"Sales"} icon={<GoGraph/>} url={"/sales"}/>
       <SidebarButton name={"Inventory"} icon={<MdOutlineInventory/>} url={"/inventory"}/>
       <SidebarButton name={"Settings"} icon={<RiSettingsFill/>} url={"/settings"}/>
+      <Toaster richColors/>
     </div>
   )
 }

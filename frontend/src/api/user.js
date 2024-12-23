@@ -15,7 +15,17 @@ export async function getAllUsers() {
 export async function removeUser(id) {
   try {
     const response = await axios
-      .delete(`${url}/delete-by-id/${id}`);
+      .delete(`${url}/delete-user/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function addUser(user) {
+  try {
+    const response = await axios
+      .post(`${url}/register`, user);
     return response.data;
   } catch (error) {
     throw error;
