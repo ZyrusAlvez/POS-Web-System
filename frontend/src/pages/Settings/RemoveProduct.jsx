@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import SideBar from "../../layout/SideBar";
-import Header from "../../components/Settings/Header";
+import Header from "../../components/Header";
 import Category from "../../components/Category";
 import Button from "../../components/ui/Button";
 import { getItemByCategory, deleteItem } from "../../api/product";
@@ -32,20 +32,21 @@ const RemoveProduct = () => {
     fetchItems();
   }, [category]);
 
-  const removeItem = useCallback((id) => {
-    
-    if (category === "add_ons") {
-      deleteAddOn(id)
-        .then(() => toast.success("Item removed"))
-        .catch((err) => toast.error(err.message));
-    } else {
-      deleteItem(id)
-        .then(() => toast.success("Item removed"))
-        .catch((err) => toast.error(err.message));
-    }
-    setItem((prevItems) => prevItems.filter((item) => item._id !== id));
-
-  }, [category]);
+  const removeItem = useCallback(
+    (id) => {
+      if (category === "add_ons") {
+        deleteAddOn(id)
+          .then(() => toast.success("Item removed"))
+          .catch((err) => toast.error(err.message));
+      } else {
+        deleteItem(id)
+          .then(() => toast.success("Item removed"))
+          .catch((err) => toast.error(err.message));
+      }
+      setItem((prevItems) => prevItems.filter((item) => item._id !== id));
+    },
+    [category]
+  );
 
   return (
     <div className="flex h-screen">
@@ -56,7 +57,9 @@ const RemoveProduct = () => {
         <Category category={category} setCategory={setCategory} />
         <div className="flex flex-col w-full gap-4 m-4 mt-8">
           {error ? (
-            <h1 className="text-red-800 text-2xl font-bold w-full text-center mt-10">No Items Found!</h1>
+            <h1 className="text-red-800 text-2xl font-bold w-full text-center mt-10">
+              No Items Found!
+            </h1>
           ) : (
             item.map((e, i) => (
               <div

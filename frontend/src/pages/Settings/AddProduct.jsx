@@ -1,5 +1,5 @@
-import SideBar from "../../layout/SideBar"
-import Header from "../../components/Settings/Header"
+import SideBar from "../../layout/SideBar";
+import Header from "../../components/Header";
 
 const AddProduct = () => {
   return (
@@ -7,10 +7,10 @@ const AddProduct = () => {
       <SideBar />
       <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col flex-grow items-center ">
-        <Header/>
+        <Header />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddProduct
+export default AddProduct;

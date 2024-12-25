@@ -4,14 +4,16 @@ const inventoryController = {
   // Add an item to the database
   addItem: async (req, res) => {
     try {
-      const { name, amount, classification, denominator } = req.body;
+      const { name, amount, category, denominator, unit } = req.body;
 
       // Create a new item
-      const newItem = await inventoryModel.create({ name, amount, classification, numerator: denominator, denominator });
+      const newItem = await inventoryModel.create({ name, amount, category, numerator: denominator, denominator, unit });
 
       res.status(201).send({ message: "Item  added", data : newItem });
     } catch (error) {
-      res.status(400).send({ message: error.message });
+
+      // if the frontend is working correctly, this will be the only error message we can get due to the model schema
+      res.status(400).send({ message: "Item already exists" });
     }
   },
 
@@ -87,16 +89,16 @@ const inventoryController = {
   
 
 
-  // Find items based on their classification
-  getItemByClassification: async (req, res) => {
+  // Find items based on their category
+  getItemByCategory: async (req, res) => {
     try {
-      const { classification } = req.params;
+      const { category } = req.params;
 
-      // Find items with the given classification
-      const items = await inventoryModel.find({ classification });
+      // Find items with the given category
+      const items = await inventoryModel.find({ category });
 
       if (items.length === 0) {
-        return res.status(404).send({ message: "No items found for this classification" });
+        return res.status(404).send({ message: "No items found for this category" });
       }
 
       res.status(200).send({ message: "Items found", data : items });

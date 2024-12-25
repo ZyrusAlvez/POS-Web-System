@@ -2,10 +2,10 @@ import axios from "axios";
 
 const url = "http://localhost:3000/api/inventory";
 
-export async function addItem(name, amount, classification) {
+export async function addItem(item) {
   try {
     const response = await axios
-      .post(`${url}/add-item`, { name, amount, classification });
+      .post(`${url}/add-item`, item);
     return response.data;
   } catch (error) {
     console.error("Error adding item:", error);
@@ -14,10 +14,10 @@ export async function addItem(name, amount, classification) {
 }
 
 
-export async function getItemByClassification(classification) {
+export async function getItemByCategory(category) {
   try {
     const response = await axios
-      .get(`${url}/get-by-classification/${classification}`);
+      .get(`${url}/get-by-category/${category}`);
     return response.data;
   } catch (error) {
     console.error(error);

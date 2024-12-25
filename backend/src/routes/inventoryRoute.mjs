@@ -5,7 +5,7 @@ const inventoryRouter = express.Router()
 
 inventoryRouter.post("/add-item", inventoryController.addItem);
 inventoryRouter.get("/get-by-id/:_id", inventoryController.getItemById)
-inventoryRouter.get("/get-by-classification/:classification", inventoryController.getItemByClassification);
+inventoryRouter.get("/get-by-category/:category", inventoryController.getItemByCategory);
 inventoryRouter.put("/decrement-by-name/", inventoryController.updateItemByName);
 inventoryRouter.delete("/delete-by-id/:_id", inventoryController.deleteItemById);
 

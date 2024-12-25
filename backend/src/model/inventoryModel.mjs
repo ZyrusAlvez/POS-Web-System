@@ -5,13 +5,12 @@ const inventorySchema = new mongoose.Schema(
     name: {
       type: String,
       unique: true,
-      required: true,
     },
     amount: {
       type: Number,
       default: 0,
     },
-    classification: {
+    category: {
       type: String,
       required: true,
       lowercase: true,
@@ -23,6 +22,10 @@ const inventorySchema = new mongoose.Schema(
     denominator : {
       type: Number,
       default: 0
+    },
+    unit : {
+      type: String,
+      default: "Pack"
     },
   }
 );

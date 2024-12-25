@@ -15,6 +15,7 @@ import RemoveEmployee from "./pages/Settings/RemoveEmployee";
 import EmployeeCard from "./pages/Settings/EmployeeCard";
 import Flavors from "./pages/Inventory/Flavors";
 import Products from "./pages/Inventory/Products";
+import AddItem from "./pages/Inventory/AddItem";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -75,6 +76,14 @@ const App = () => {
       element: (
         <ProtectedRoute>
           <Products />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/inventory/add-item",
+      element: (
+        <ProtectedRoute>
+          <AddItem />
         </ProtectedRoute>
       ),
     },
