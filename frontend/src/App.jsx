@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/Login";
 import Menu from "./pages/Menu";
 import Sales from "./pages/Sales";
-import Inventory from "./pages/Inventory";
+import Inventory from "./pages/Inventory/Inventory";
 import Settings from "./pages/Settings/Settings";
 import AddEmployee from "./pages/Settings/AddEmployee";
 import AddProduct from "./pages/Settings/AddProduct";
@@ -13,6 +13,8 @@ import ViewEmployee from "./pages/Settings/ViewEmployee";
 import RemoveProduct from "./pages/Settings/RemoveProduct";
 import RemoveEmployee from "./pages/Settings/RemoveEmployee";
 import EmployeeCard from "./pages/Settings/EmployeeCard";
+import Flavors from "./pages/Inventory/Flavors";
+import Products from "./pages/Inventory/Products";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -41,6 +43,38 @@ const App = () => {
       element: (
         <ProtectedRoute>
           <Inventory />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/inventory/flavors",
+      element: (
+        <ProtectedRoute>
+          <Flavors />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/inventory/products",
+      element: (
+        <ProtectedRoute>
+          <Products />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/inventory/materials",
+      element: (
+        <ProtectedRoute>
+          <Products />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/inventory/fruit-tea",
+      element: (
+        <ProtectedRoute>
+          <Products />
         </ProtectedRoute>
       ),
     },

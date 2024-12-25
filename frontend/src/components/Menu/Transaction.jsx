@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import AuthContext from "../../context/authContext"
+import AuthContext from "../../context/AuthContext"
 import { CgProfile } from "react-icons/cg";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -67,11 +67,11 @@ const Transaction = ({billing, setBilling}) => {
           <h1 className="mb-2">Payment</h1>
           <div className="flex justify-evenly items-end">
             <div className="flex flex-col items-center cursor-pointer" onClick={() => setPayment('cash')}>
-              <BsCash className={`text-5xl rounded-2xl ${payment === 'cash' ? 'bg-primary' : 'bg-white'}`}/>
+              <BsCash className={`text-5xl rounded-xl ${payment === 'cash' ? 'bg-primary' : 'bg-white'}`}/>
               <h1>Cash</h1>
             </div>
             <div className="flex flex-col items-center cursor-pointer" onClick={() => setPayment('gcash')}>
-              <FaWallet className={`text-4xl rounded-2xl  ${payment === 'gcash' ? 'bg-primary' : 'bg-white'}`}/>
+              <FaWallet className={`text-5xl rounded-sm ${payment === 'gcash' ? 'bg-primary' : 'bg-white'}`}/>
               <h1>GCash</h1>
             </div>
           </div>
