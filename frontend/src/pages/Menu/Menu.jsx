@@ -1,6 +1,6 @@
-import SideBar from "../layout/SideBar.jsx";
-import Main from "../components/Menu/Main.jsx";
-import Transaction from "../components/Menu/Transaction.jsx";
+import SideBar from "../../layout/SideBar.jsx";
+import Main from "../../components/Menu/Main.jsx";
+import Transaction from "../../components/Menu/Transaction.jsx";
 import { useState } from "react";
 const Menu = () => {
   const [billing, setBilling] = useState([])

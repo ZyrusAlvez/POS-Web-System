@@ -1,12 +1,17 @@
 import SideBar from "../../layout/SideBar"
 import Header from "../../components/Inventory/Header"
+import { useState, useEffect } from "react"
+import { getItemByCategory } from "../../api/inventory"
 import Button from "../../components/ui/Button"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 const Inventory = () => {
   const [category, setCategory] = useState("flavors")
-  const navigate = useNavigate()
+
+  useEffect(() => {
+    getItemByCategory("flavors")
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error))
+  }, [])
 
   return (
     <div className="flex h-screen">

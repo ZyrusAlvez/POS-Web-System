@@ -3,9 +3,8 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/Login";
-import Menu from "./pages/Menu";
+import Menu from "./pages/Menu/Menu";
 import Sales from "./pages/Sales";
-import Inventory from "./pages/Inventory/Inventory";
 import Settings from "./pages/Settings/Settings";
 import AddEmployee from "./pages/Settings/AddEmployee";
 import AddProduct from "./pages/Settings/AddProduct";
@@ -13,9 +12,8 @@ import ViewEmployee from "./pages/Settings/ViewEmployee";
 import RemoveProduct from "./pages/Settings/RemoveProduct";
 import RemoveEmployee from "./pages/Settings/RemoveEmployee";
 import EmployeeCard from "./pages/Settings/EmployeeCard";
-import Flavors from "./pages/Inventory/Flavors";
-import Products from "./pages/Inventory/Products";
 import AddItem from "./pages/Inventory/AddItem";
+import Inventory from "./pages/Inventory/Inventory";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -44,38 +42,6 @@ const App = () => {
       element: (
         <ProtectedRoute>
           <Inventory />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/inventory/flavors",
-      element: (
-        <ProtectedRoute>
-          <Flavors />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/inventory/products",
-      element: (
-        <ProtectedRoute>
-          <Products />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/inventory/materials",
-      element: (
-        <ProtectedRoute>
-          <Products />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/inventory/fruit-tea",
-      element: (
-        <ProtectedRoute>
-          <Products />
         </ProtectedRoute>
       ),
     },
