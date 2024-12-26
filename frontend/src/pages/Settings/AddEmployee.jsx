@@ -4,7 +4,7 @@ import Button from "../../components/ui/Button";
 import InputPassword from "../../components/ui/InputPassword";
 import { useState } from "react";
 import { addUser } from "../../api/user";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 
 const AddEmployee = () => {
   const initialCredentials = {
@@ -46,6 +46,7 @@ const AddEmployee = () => {
       <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col flex-grow items-center ">
         <Header />
+        <Toaster richColors />
 
         <div className="w-[90%] h-auto p-4 pb-8 bg-primary rounded-2xl font-bold text-xl text-center flex flex-col gap-4">
           <h1>ADD EMPLOYEE</h1>

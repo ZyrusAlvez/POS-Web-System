@@ -2,7 +2,7 @@ import SideBar from "../../layout/SideBar";
 import Header from "../../components/Header";
 import Button from "../../components/ui/Button";
 import { getUser } from "../../api/user";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { resetSales } from "../../api/user";
@@ -31,7 +31,7 @@ const EmployeeCard = () => {
       <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col flex-grow items-center">
         <Header />
-
+        <Toaster richColors />
         <div className="flex flex-col rounded-[2rem] bg-primary w-[90%] gap-6 text-2xl p-4 ">
           <h1 className="text-start">VIEW EMPLOYEE STATUS</h1>
           <div className="w-full flex flex-col items-center gap-2 font-bold">

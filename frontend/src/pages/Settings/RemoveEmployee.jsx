@@ -3,8 +3,8 @@ import Header from "../../components/Header";
 import { useState, useEffect, useContext } from "react";
 import { getAllUsers, removeUser } from "../../api/user";
 import Button from "../../components/ui/Button";
-import AuthContext from "../../context/authContext";
-import { toast } from "sonner";
+import AuthContext from "../../context/AuthContext";
+import { toast, Toaster } from "sonner";
 
 const RemoveEmployee = () => {
   const [users, setUsers] = useState([]);
@@ -35,7 +35,7 @@ const RemoveEmployee = () => {
       <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col flex-grow items-center ">
         <Header />
-
+        <Toaster richColors />
         <div className="flex flex-col items-center rounded-[2rem] bg-primary w-[90%] font-bold gap-4 text-xl py-4">
           <h1>REMOVE EMPLOYEE</h1>
           {users.map((e, i) => (

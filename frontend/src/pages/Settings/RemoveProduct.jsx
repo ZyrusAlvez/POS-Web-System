@@ -5,7 +5,7 @@ import Category from "../../components/Category";
 import Button from "../../components/ui/Button";
 import { getItemByCategory, deleteItem } from "../../api/product";
 import { getAllItems, deleteAddOn } from "../../api/addOn";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 
 const RemoveProduct = () => {
   const [category, setCategory] = useState("milktea");
@@ -54,6 +54,7 @@ const RemoveProduct = () => {
       <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col flex-grow items-center">
         <Header />
+        <Toaster richColors />
         <Category category={category} setCategory={setCategory} />
         <div className="flex flex-col w-full gap-4 m-4 mt-8">
           {error ? (

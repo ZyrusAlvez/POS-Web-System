@@ -12,9 +12,8 @@ const SideBar = () => {
       <img src={logo}/>
       <SidebarButton name={"Menu"} icon={<BiSolidFoodMenu/>} url={"/"}/>
       <SidebarButton name={"Sales"} icon={<GoGraph/>} url={"/sales"}/>
-      <SidebarButton name={"Inventory"} icon={<MdOutlineInventory/>} url={"/inventory/flavors"}/>
+      <SidebarButton name={"Inventory"} icon={<MdOutlineInventory/>} url={"/inventory"}/>
       <SidebarButton name={"Settings"} icon={<RiSettingsFill/>} url={"/settings"}/>
-      <Toaster richColors/>
     </div>
   )
 }

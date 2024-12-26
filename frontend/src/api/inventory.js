@@ -13,6 +13,17 @@ export async function addItem(item) {
   }
 }
 
+export async function deleteItem(id) {
+  try {
+    const response = await axios
+      .delete(`${url}/delete-by-id/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    throw error;
+  }
+}
+
 
 export async function getItemByCategory(category) {
   try {

@@ -17,7 +17,7 @@ const Header = ({setCategory}) => {
         <div className={`absolute w-[170px] top-0 translate-y-10 text-sm font-bold cursor-pointer ${categoryClicked ? 'block' : 'hidden'}`}>
           <div className="p-2 border-x-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("milktea"); setCategoryClicked(false)}}>Milktea</div>
           <div className={`p-2 border-x-2 border-y-[1px] border-primary text-center relative ${frappucino ? 'bg-primary text-light' : 'bg-light text-black'}`} onClick={() => setFrappucino((f) => !f)}>
-            <h1>Frappucino</h1>
+            <h1>Frappuccino</h1>
             <div className={`absolute w-[170px] translate-x-40 -top-0 text-black ${frappucino ? 'block' : 'hidden'}`}>
               <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("frappuccino_cheesecake"); setCategoryClicked(false)}}>Cheesecake Series</div>
               <div className="p-2 border-r-2 border-y-[1px] border-primary bg-light text-center active:bg-primary active:text-light" onClick={() => {setCategory("frappuccino_coffee"); setCategoryClicked(false)}}>Coffee Series</div>

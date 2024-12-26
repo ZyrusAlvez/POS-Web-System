@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom";
-
 const Header = ({ category, setCategory }) => {
 
   return (
-    <div className="flex gap-4 font-bold flex-wrap justify-center mt-4">
+    <div className="flex gap-4 font-bold flex-wrap justify-center mt-4 z-0">
       <div
         className={`w-auto p-4 bg-primary rounded-xl flex items-center cursor-pointer ${
           category === "flavors" ? "shadow-hard" : ""
