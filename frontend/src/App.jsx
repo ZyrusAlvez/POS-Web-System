@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -17,6 +18,10 @@ import AddItem from "./pages/Inventory/AddItem";
 import Inventory from "./pages/Inventory/Inventory";
 
 const App = () => {
+
+  // connect the Settings/AddProduct to Settings/AddProduct/AddIngredients
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+
   const router = createBrowserRouter([
     {
       path: "/login",
@@ -66,7 +71,7 @@ const App = () => {
       path: "/settings/add-product",
       element: (
         <ProtectedRoute>
-          <AddProduct />
+          <AddProduct selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients}/>
         </ProtectedRoute>
       ),
     },
@@ -74,7 +79,7 @@ const App = () => {
       path: "/settings/add-product/add-ingredients",
       element: (
         <ProtectedRoute>
-          <AddIngredients />
+          <AddIngredients selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients}/>
         </ProtectedRoute>
       ),
     },
