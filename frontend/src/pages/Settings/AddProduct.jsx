@@ -10,6 +10,7 @@ const AddProduct = () => {
   const [category, setCategory] = useState("milktea");
   const [cup16oz, setCup16oz] = useState(false);
   const [cup22oz, setCup22oz] = useState(false);
+  const [ingredeints, setIngredients] = useState([]);
   console.log(cup16oz)
   console.log(cup22oz)
 
