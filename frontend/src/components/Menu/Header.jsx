@@ -6,7 +6,7 @@ const Header = ({setCategory}) => {
   const [frappucino, setFrappucino] = useState(false)
 
   return (
-    <div className="flex justify-between m-8 items-center bg-white relative z-10">
+    <div className="flex justify-between m-8 items-center bg-white relative z-[1]">
       <h1 className="text-5xl font-bold">Menu</h1>
       <div className="flex bg-primary gap-2 relative">
         <div className="flex items-center justify-center gap-2 h-[40px] w-[170px] cursor-pointer" onClick={() => setCategoryClicked((c) => !c)}>

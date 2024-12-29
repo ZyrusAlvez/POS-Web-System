@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import AuthContext from "../../context/AuthContext"
 import { CgProfile } from "react-icons/cg";
 import { AiFillMinusCircle } from "react-icons/ai";
@@ -6,14 +6,16 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { BsCash } from "react-icons/bs";
 import { FaWallet } from "react-icons/fa";
-import { decrementByName } from "../../api/inventory";
-import { toast, Toaster } from "sonner";
-import { addSales } from "../../api/user";
+import { Toaster } from "sonner";
 
-const Transaction = ({billing, setBilling}) => {
+const Transaction = ({billing, setBilling, setSubmit, total, setTotal, setPaymentMethod}) => {
   const navigate = useNavigate()
   const { user, logout } = useContext(AuthContext)
   const [payment, setPayment] = useState("cash")
+
+  useEffect(() => {
+    setTotal(billing.reduce((acc, curr) => acc + curr.price, 0))
+  }, [billing])
 
   function handleLogout(){
     logout()
@@ -25,33 +27,13 @@ const Transaction = ({billing, setBilling}) => {
   }
 
   function handleSubmit(){
-    async function decrementInventory() {
-      try {
-        for (const item of billing) {
-          const ingredients = item.size === "16oz" ? item.product.ingredients_16oz : item.product.ingredients_22oz;
-          for (const ingredient in ingredients) {
-            await decrementByName({ name: ingredient, decrement: ingredients[ingredient] * item.quantity });
-          }
-        }
-        setBilling([]);
-        await addSales(user?.id, billing.reduce((acc, curr) => acc + curr.price, 0));
-        return true;
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
-    }
-    
-    toast.promise(decrementInventory(), {
-      loading: 'Loading Transaction...',
-      success: 'Transaction Successful',
-      error: 'Error Processing Transaction, Please Try Again',
-    })
+    setSubmit(true)
+    setPaymentMethod(payment)
   }
 
   return (
     <div className='h-screen bg-primary w-[25vw] fixed right-0 z-1 flex flex-col items-center gap-4 py-4 font-bold min-w-[200px]'>
-      <Toaster richColors />
+      <Toaster richColors/>
       <div className="flex bg-white rounded-[2rem] w-[90%] h-[80px] shadow-hard items-center justify-center gap-8">
         <CgProfile className="text-5xl text-primary"/>
         <div className="font-extrabold text-sm">
@@ -93,7 +75,7 @@ const Transaction = ({billing, setBilling}) => {
         </div>
         <div className="flex justify-between py-2 border-y-2 border-primary w-[85%] mt-4">
           <h1>Total:</h1>
-          <h1>₱ {billing.reduce((acc, curr) => acc + curr.price, 0)}</h1>
+          <h1>₱ {total}</h1>
         </div>
         <div className="flex flex-col w-full px-5 mt-2">
           <h1 className="mb-2">Payment</h1>

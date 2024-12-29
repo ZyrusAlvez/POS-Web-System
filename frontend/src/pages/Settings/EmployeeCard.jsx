@@ -15,9 +15,7 @@ const EmployeeCard = () => {
     getUser(id)
       .then((data) => setUser(data))
       .catch((error) => toast.error(error.message));
-  }, []);
-
-  console.log(user);
+  }, [handleReset]);
 
   function handleReset() {
     resetSales(id)

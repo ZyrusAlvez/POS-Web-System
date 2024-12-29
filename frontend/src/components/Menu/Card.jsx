@@ -114,7 +114,7 @@ const Card = ({ product, setBilling, billing }) => {
               onClick={() => {
                 setRadbtn('16oz');
                 cupPrice.current = product.price_16oz;
-                setPrice(cupPrice.current * quantity);
+                setPrice(cupPrice.current * quantity + addOns.reduce((acc, curr) => acc + curr.price, 0));
               }}
             >
               16oz
@@ -126,7 +126,7 @@ const Card = ({ product, setBilling, billing }) => {
               onClick={() => {
                 setRadbtn('22oz');
                 cupPrice.current = product.price_22oz;
-                setPrice(cupPrice.current * quantity);
+                setPrice(cupPrice.current * quantity + addOns.reduce((acc, curr) => acc + curr.price, 0));
               }}
             >
               22oz
