@@ -6,6 +6,9 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { BsCash } from "react-icons/bs";
 import { FaWallet } from "react-icons/fa";
+import { decrementByName } from "../../api/inventory";
+import { toast, Toaster } from "sonner";
+import { addSales } from "../../api/user";
 
 const Transaction = ({billing, setBilling}) => {
   const navigate = useNavigate()
@@ -21,8 +24,36 @@ const Transaction = ({billing, setBilling}) => {
     setBilling((prevBilling) => prevBilling.filter((_, i) => i !== index));
   }
 
+  function handleSubmit(){
+    async function decrementInventory() {
+      try {
+        for (const item of billing) {
+          const ingredients = item.size === "16oz" ? item.product.ingredients_16oz : item.product.ingredients_22oz;
+          for (const ingredient in ingredients) {
+            await decrementByName({ name: ingredient, decrement: ingredients[ingredient] * item.quantity });
+          }
+        }
+        setBilling([]);
+        await addSales(user?.id, billing.reduce((acc, curr) => acc + curr.price, 0));
+        return true;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    }
+    
+    toast.promise(decrementInventory(), {
+      loading: 'Loading Transaction...',
+      success: 'Transaction Successful',
+      error: 'Error Processing Transaction, Please Try Again',
+    });
+    
+    
+  }
+
   return (
     <div className='h-screen bg-primary w-[25vw] fixed right-0 z-1 flex flex-col items-center gap-4 py-4 font-bold min-w-[200px]'>
+      <Toaster richColors />
       <div className="flex bg-white rounded-[2rem] w-[90%] h-[80px] shadow-hard items-center justify-center gap-8">
         <CgProfile className="text-5xl text-primary"/>
         <div className="font-extrabold text-sm">
@@ -39,7 +70,10 @@ const Transaction = ({billing, setBilling}) => {
               <div key={i} className="flex flex-col justify-between items-center w-full">
                 <div className="flex justify-between items-center w-full flex-grow gap-3">
                   <div className="w-full">
-                    <h1>{e.product.name}</h1>
+                    <div className="flex items-center">
+                      <h1>{e.product.name}</h1>
+                      <h1 className="text-sm bg-primary px-[4px] rounded-lg ml-2">{e.size}</h1>
+                    </div>
                     <div className="flex justify-between">
                       <h1>{e.quantity}x</h1>
                       <h1>₱ {e.price}</h1>
@@ -77,7 +111,7 @@ const Transaction = ({billing, setBilling}) => {
           </div>
         </div>
         <div className="flex justify-center p-4">
-          <button className="bg-primary text-dark p-2 w-[150px] font-extrabold rounded-full">CONFIRM</button>
+          <button className="bg-primary text-dark p-2 w-[150px] font-extrabold rounded-full" onClick={() => handleSubmit()}>CONFIRM</button>
         </div>
       </div>
     </div>

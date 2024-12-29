@@ -35,3 +35,13 @@ export async function getItemByCategory(category) {
     throw error;
   }
 }
+export async function decrementByName(data) {
+  try {
+    const response = await axios
+      .put(`${url}/decrement-by-name`, data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error.response.data;
+  }
+}

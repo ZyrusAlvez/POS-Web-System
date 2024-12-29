@@ -51,3 +51,13 @@ export async function resetSales(id) {
     throw error;
   }
 }
+
+export async function addSales(id, amount) {
+  try {
+    const response = await axios
+      .put(`${url}/add-sales/${id}`, { amount });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}

@@ -55,7 +55,7 @@ const Card = ({ product, setBilling, billing }) => {
   }
 
   function handleAdd() {
-    setBilling((prev) => [...prev, { product: product, quantity: quantity, price: price, addOns: addOns }]);
+    setBilling((prev) => [...prev, { product: product, quantity: quantity, price: price, addOns: addOns, size: radbtn }]);
   }
 
   function toggleAddOn(addOn) {

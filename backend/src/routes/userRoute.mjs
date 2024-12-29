@@ -11,5 +11,6 @@ userRouter.delete("/delete-user/:id", userController.deleteUser)
 userRouter.get("/get-all-users", userController.getAllUsers)
 userRouter.get("/get-user/:id", userController.getUser)
 userRouter.put("/reset-sales/:id", userController.resetSales)
+userRouter.put("/add-sales/:id", userController.addSales)
 
 export default userRouter

@@ -48,40 +48,31 @@ const inventoryController = {
       if (!item) {
         return res.status(404).send({ message: "Item not found" });
       }
-  
-      let updatedNumerator = item.numerator - decrement;
-  
-      // Check if numerator goes below or equals 0
-      if (updatedNumerator <= 0) {
-        // Decrement amount and reset numerator
-        const remainingNumerator = item.denominator + updatedNumerator; // Reset numerator to denominator value
-        
-        const updatedItem = await inventoryModel.findOneAndUpdate(
-          { name },
-          {
-            $inc: { amount: -1 },
-            numerator: remainingNumerator,
-          },
-          { new: true }
-        );
-  
-        return res.status(200).send({
-          message: "Amount decremented and numerator reset",
-          data: updatedItem,
-        });
+      
+      let newNumerator = 0
+      let addedAmount = Math.floor(decrement / item.denominator)
+      if(decrement % item.denominator > item.numerator){
+        addedAmount += 1
+        newNumerator = item.denominator - (decrement % item.denominator)
+      }else{
+        newNumerator = item.numerator - decrement
       }
-  
-      // If numerator doesn't hit 0, just decrement numerator
+
+
       const updatedItem = await inventoryModel.findOneAndUpdate(
         { name },
-        { $inc: { numerator: -decrement } },
+        {
+          $inc: { amount: -(addedAmount)},
+          numerator: newNumerator
+        },
         { new: true }
       );
   
-      res.status(200).send({
-        message: "Numerator decremented",
+      return res.status(200).send({
+        message: "Amount decremented",
         data: updatedItem,
       });
+
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
