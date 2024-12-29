@@ -46,9 +46,7 @@ const Transaction = ({billing, setBilling}) => {
       loading: 'Loading Transaction...',
       success: 'Transaction Successful',
       error: 'Error Processing Transaction, Please Try Again',
-    });
-    
-    
+    })
   }
 
   return (

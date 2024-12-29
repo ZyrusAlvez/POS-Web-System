@@ -47,20 +47,24 @@ const Inventory = () => {
       <div className="flex flex-col flex-grow items-center relative">
         <Header category={category} setCategory={setCategory}/>
         <Toaster richColors/>
-        <div className="grid grid-cols-[auto,auto,auto] text-center py-16 items-center">
+        {data ? (
+          <div className="grid grid-cols-[auto,auto,auto] text-center py-16 items-center">
 
-          <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">ITEM</h1>
-          <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">IN STOCK</h1>
-          <h1></h1>
+            <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">ITEM</h1>
+            <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">IN STOCK</h1>
+            <h1></h1>
 
-          {data && data.map((item) => (
-            <>
-              <div className="border-2 border-primary py-2 px-16 bg-light">{item.name}</div>
-              <div className="border-2 border-primary py-2 px-16 bg-light">{item?.amount} {item.unit}</div>
-              <FaRegTrashCan className="text-red-700 text-2xl ml-4 cursor-pointer" onClick={() => handleClick(item)}/>
-            </>
-          ))}
-        </div>
+            {data && data.map((item) => (
+              <>
+                <div className="border-2 border-primary py-2 px-16 bg-light">{item.name}</div>
+                <div className="border-2 border-primary py-2 px-16 bg-light">{item?.amount} {item.unit}</div>
+                <FaRegTrashCan className="text-red-700 text-2xl ml-4 cursor-pointer" onClick={() => handleClick(item)}/>
+              </>
+            ))}
+          </div> ) : (
+            <h1>Loading...</h1>
+          )
+        }
 
         <Button style='px-16 py-4 text-lg mt-16 fixed right-0 bottom-0 mb-10 mr-10' onClick={() => navigate("./add-item")}>Add Item</Button>
       </div>

@@ -122,7 +122,7 @@ const Card = ({ product, setBilling, billing }) => {
             <button
               className={`w-10 h-10 rounded-full text-black text-sm ${
                 radbtn === '22oz' ? 'bg-primary' : 'bg-white'
-              }`}
+              } ${product.price_22oz ? 'block' : 'hidden'}`}
               onClick={() => {
                 setRadbtn('22oz');
                 cupPrice.current = product.price_22oz;
