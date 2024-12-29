@@ -8,7 +8,6 @@ import Menu from "./pages/Menu/Menu";
 import Sales from "./pages/Sales";
 import Settings from "./pages/Settings/Settings";
 import AddEmployee from "./pages/Settings/AddEmployee";
-import AddIngredients from "./pages/Settings/AddIngredients";
 import AddProduct from "./pages/Settings/AddProduct";
 import ViewEmployee from "./pages/Settings/ViewEmployee";
 import RemoveProduct from "./pages/Settings/RemoveProduct";
@@ -71,15 +70,7 @@ const App = () => {
       path: "/settings/add-product",
       element: (
         <ProtectedRoute>
-          <AddProduct selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients}/>
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/settings/add-product/add-ingredients",
-      element: (
-        <ProtectedRoute>
-          <AddIngredients selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients}/>
+          <AddProduct />
         </ProtectedRoute>
       ),
     },
