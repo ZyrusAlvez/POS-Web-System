@@ -1,5 +1,5 @@
 // this is necessary for formality in the UI
-export function capitalize(str) {
+export function title(str) {
   if (typeof str !== 'string') return '';
   return str
     .split(' ')

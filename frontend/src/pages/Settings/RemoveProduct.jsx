@@ -53,10 +53,10 @@ const RemoveProduct = () => {
       <SideBar />
       <div className="w-[15vw] min-w-[150px]" />
       <div className="flex flex-col flex-grow items-center">
-        <Header />
+        <Header title="Remove Product"/>
         <Toaster richColors />
         <Category category={category} setCategory={setCategory} />
-        <div className="flex flex-col w-full gap-4 m-4 mt-8">
+        <div className="flex flex-col w-full gap-4 m-4 mt-8 pb-8">
           {error ? (
             <h1 className="text-red-800 text-2xl font-bold w-full text-center mt-10">
               No Items Found!

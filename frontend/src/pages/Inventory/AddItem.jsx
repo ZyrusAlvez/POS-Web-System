@@ -4,7 +4,7 @@ import Button from "../../components/ui/Button";
 import { addItem } from "../../api/inventory";
 import { useEffect, useState } from "react";
 import { toast, Toaster } from "sonner";
-import { capitalize } from "../../utility/stringFunctions";
+import { title } from "../../utility/stringFunctions";
 
 const AddItem = () => {
   const initialForm = {
@@ -23,7 +23,7 @@ const AddItem = () => {
       newCategory = "fruit_tea";
     }
 
-    addItem({ ...form, category: newCategory, name: capitalize(form.name) })
+    addItem({ ...form, category: newCategory, name: title(form.name) })
       .then((res) => {
         toast.success(res.message);
         setForm(initialForm);

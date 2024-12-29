@@ -28,9 +28,9 @@ export async function addItem(data) {
   try {
     const response = await axios
       .post(`${url}/add-item`, data);
-    return response.data;
+    return response.data
   } catch (error) {
     console.error(error);
-    throw error;
+    throw error.response.data;
   }
 }
