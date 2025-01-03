@@ -15,6 +15,16 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
       try {
         for (const item of billing) {
           const ingredients = item.size === "16oz" ? item.product.ingredients_16oz : item.product.ingredients_22oz;
+          
+          // reduce the inventory based on the add-ons' ingredients * quantity
+          for (const addOn of item.addOns) {
+            const addOnIngredients = addOn.ingredients;
+            for (const ingredient in addOnIngredients) {
+              await decrementByName({ name: ingredient, decrement: addOnIngredients[ingredient] * item.quantity });
+            }
+          }
+
+          // reduce the inventory based on the product's ingredients * quantity
           for (const ingredient in ingredients) {
             await decrementByName({ name: ingredient, decrement: ingredients[ingredient] * item.quantity });
           }
@@ -31,8 +41,8 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
     toast.promise(decrementInventory(), {
       loading: 'Loading Transaction...',
       success: 'Transaction Successful',
-      error: 'Error Processing Transaction, Please Try Again',
-    })
+      error: (error) => `${error.name} as ingredient is missing`,
+    });
 
     setSubmit(false)
   }

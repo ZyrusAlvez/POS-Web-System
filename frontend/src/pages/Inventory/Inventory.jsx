@@ -51,13 +51,16 @@ const Inventory = () => {
           <div className="grid grid-cols-[auto,auto,auto] text-center py-16 items-center">
 
             <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">ITEM</h1>
-            <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">IN STOCK</h1>
+            <h1 className="border-2 border-primary py-2 px-12 font-bold bg-light">IN STOCK</h1>
             <h1></h1>
 
             {data && data.map((item) => (
               <>
-                <div className="border-2 border-primary py-2 px-16 bg-light">{item.name}</div>
-                <div className="border-2 border-primary py-2 px-16 bg-light">{item?.amount} {item.unit}</div>
+                <div className="border-2 border-primary py-2 px-12 bg-light">{item.name}</div>
+                <div className="border-2 border-primary py-2 px-12 bg-light grid grid-cols-2 items-center gap-4">
+                  <h1 className="text-end">{item?.amount}</h1>
+                  <h1 className="text-start">{item?.unit}</h1>
+                </div>
                 <FaRegTrashCan className="text-red-700 text-2xl ml-4 cursor-pointer" onClick={() => handleClick(item)}/>
               </>
             ))}

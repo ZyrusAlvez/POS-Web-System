@@ -42,7 +42,7 @@ const Card = ({ product, setBilling, billing }) => {
       newQuantity = quantity + 1;
     }
 
-    setPrice(Number(cupPrice.current * newQuantity));
+    setPrice(Number(cupPrice.current * newQuantity) + addOns.reduce((acc, curr) => acc + curr.price, 0));
   }
 
   function handleChange(e) {
@@ -50,7 +50,7 @@ const Card = ({ product, setBilling, billing }) => {
     if (e.target.value > -1) {
       setQuantity(Number(e.target.value));
       const newQuantity = e.target.value;
-      setPrice(Number(cupPrice.current * newQuantity));
+      setPrice(Number(cupPrice.current * newQuantity) + addOns.reduce((acc, curr) => acc + curr.price, 0));
     }
   }
 
@@ -66,9 +66,9 @@ const Card = ({ product, setBilling, billing }) => {
     );
 
     if (addOns.includes(addOn)) {
-      setPrice((prevPrice) => prevPrice - addOn.price);
+      setPrice((prevPrice) => prevPrice - (addOn.price * quantity));
     }else{
-      setPrice((prevPrice) => prevPrice + addOn.price);
+      setPrice((prevPrice) => prevPrice + (addOn.price * quantity));
     }
   }
 

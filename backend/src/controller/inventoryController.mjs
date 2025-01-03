@@ -46,7 +46,7 @@ const inventoryController = {
       // Find the item first
       const item = await inventoryModel.findOne({ name });
       if (!item) {
-        return res.status(404).send({ message: "Item not found" });
+        return res.status(404).send({ name, message: "Item not found" });
       }
       
       let newNumerator = 0

@@ -56,7 +56,7 @@ const Transaction = ({billing, setBilling, setSubmit, total, setTotal, setPaymen
                     </div>
                     <div className="flex justify-between">
                       <h1>{e.quantity}x</h1>
-                      <h1>₱ {e.price}</h1>
+                      <h1>₱ {e.size === "22oz" ? e.product.price_22oz * e.quantity : e.product.price_16oz * e.quantity}</h1>
                     </div>
                   </div>
                   <AiFillMinusCircle className="text-red-600 text-3xl cursor-pointer" onClick={() => handleRemove(i)} />
@@ -65,7 +65,7 @@ const Transaction = ({billing, setBilling, setSubmit, total, setTotal, setPaymen
                   {e.addOns.map((add, i) => (
                     <div className="flex justify-between w-[75%]" key={i}>
                       <h1>• {add.name}</h1>
-                      <h1>₱ {add.price}</h1>
+                      <h1>₱ {add.price * e.quantity}</h1>
                     </div>
                   ))}
                 </div>
