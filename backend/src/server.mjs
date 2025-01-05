@@ -7,6 +7,7 @@ import inventoryRouter from "./routes/inventoryRoute.mjs";
 import productRouter from "./routes/productRoute.mjs";
 import userRouter from "./routes/userRoute.mjs";
 import addonRouter from "./routes/addonRoute.mjs";
+import historyRouter from "./routes/sales/historyRoute.mjs";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use("/api/inventory", inventoryRouter)
 app.use("/api/product", productRouter)
 app.use("/api/user", userRouter)
 app.use("/api/add-on", addonRouter)
+app.use("/api/sales/history", historyRouter)
 
 mongoose
   .connect(DATABASE)

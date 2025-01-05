@@ -41,7 +41,6 @@ export async function decrementByName(data) {
       .put(`${url}/decrement-by-name`, data);
     return response.data;
   } catch (error) {
-    console.error(error);
     throw error.response.data;
   }
 }

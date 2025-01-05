@@ -10,43 +10,68 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
   const { user } = useContext(AuthContext)
   const [reference, setReference] = useState("")
 
-  function handleSubmit(){
+  function handleSubmit() {
     async function decrementInventory() {
       try {
         for (const item of billing) {
           const ingredients = item.size === "16oz" ? item.product.ingredients_16oz : item.product.ingredients_22oz;
-          
-          // reduce the inventory based on the add-ons' ingredients * quantity
+  
+          // Reduce the inventory based on the add-ons' ingredients * quantity
           for (const addOn of item.addOns) {
             const addOnIngredients = addOn.ingredients;
             for (const ingredient in addOnIngredients) {
-              await decrementByName({ name: ingredient, decrement: addOnIngredients[ingredient] * item.quantity });
+              try {
+                await decrementByName({ name: ingredient, decrement: addOnIngredients[ingredient] * item.quantity });
+              } catch (error) {
+                console.error(`Error decrementing add-on ingredient ${ingredient}:`, error.name);
+              }
             }
           }
-
-          // reduce the inventory based on the product's ingredients * quantity
+  
+          // Reduce the inventory based on the product's ingredients * quantity
           for (const ingredient in ingredients) {
-            await decrementByName({ name: ingredient, decrement: ingredients[ingredient] * item.quantity });
+            try {
+              await decrementByName({ name: ingredient, decrement: ingredients[ingredient] * item.quantity });
+            } catch (error) {
+              console.error(`Error decrementing product ingredient ${ingredient}:`, error.name);
+            }
           }
         }
+  
+        // Gets the current date and time
+        const now = new Date();
+  
+        const date = now.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric' 
+        });
+  
+        const time = now.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: true
+        });
+  
         setBilling([]);
         await addSales(user?.id, total);
-        return true;
+        await addItem({ billing, date, time });
+  
       } catch (error) {
-        console.error(error);
-        throw error;
+        console.error('Error processing transaction:', error);
+        throw error; // Re-throw the error to be caught by the toast.promise
       }
     }
-    
+  
     toast.promise(decrementInventory(), {
       loading: 'Loading Transaction...',
       success: 'Transaction Successful',
-      error: (error) => `${error.name} as ingredient is missing`,
+      error: (error) => `Error: ${error.name} - ${error.message}`,
     });
 
     setSubmit(false)
   }
-
   return (
     <div className={`w-screen h-screen ${submit ? 'flex' : 'hidden'} justify-center items-center bg-black bg-opacity-50 fixed top-0 left-0 z-[60]`}>
       <div className='relative h-[40%] w-[55%] min-w-[400px] bg-primary rounded-[2rem] flex flex-col items-center justify-center gap-y-8'>

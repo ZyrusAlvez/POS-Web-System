@@ -2,7 +2,7 @@ import SideBar from "../../layout/SideBar.jsx";
 import Main from "../../components/Menu/Main.jsx";
 import Transaction from "../../components/Menu/Transaction.jsx";
 import { useState } from "react";
-import Cash from "../../components/Menu/Pop-Up/cash.jsx";
+import Cash from "../../components/Menu/Pop-Up/Cash.jsx";
 import Gcash from "../../components/Menu/Pop-Up/Gcash.jsx";
 const Menu = () => {
   const [billing, setBilling] = useState([])
