@@ -5,7 +5,8 @@ import { addSales } from "../../../api/user";
 import AuthContext from "../../../context/AuthContext"
 import Button from '../../ui/Button'
 import { MdCancel } from "react-icons/md";
-import { addItem } from "../../../api/sales/history";
+import { addItem } from "../../../api/sales";
+import { getDate, getTime } from '../../../utility/stringFunctions';
 
 const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
   const { user } = useContext(AuthContext)
@@ -39,21 +40,8 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
           }
         }
   
-        // Gets the current date and time
-        const now = new Date();
-  
-        const date = now.toLocaleDateString('en-US', {
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric' 
-        });
-  
-        const time = now.toLocaleTimeString('en-US', {
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric',
-          hour12: true
-        });
+        const date = getDate()
+        const time = getTime()
   
         setBilling([]);
         await addSales(user?.id, total);

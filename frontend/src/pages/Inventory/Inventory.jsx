@@ -43,12 +43,12 @@ const Inventory = () => {
   return (
     <div className="flex h-screen">
       <SideBar />
-      <div className="w-[15vw] min-w-[150px]" />
+      <div className="w-[15vw] min-w-[150px] h-full" />
       <div className="flex flex-col flex-grow items-center relative">
         <Header category={category} setCategory={setCategory}/>
         <Toaster richColors/>
         {data ? (
-          <div className="grid grid-cols-[auto,auto,auto] text-center py-16 items-center">
+          <div className="grid grid-cols-[auto,auto,auto] text-center py-8 items-center">
 
             <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">ITEM</h1>
             <h1 className="border-2 border-primary py-2 px-12 font-bold bg-light">IN STOCK</h1>

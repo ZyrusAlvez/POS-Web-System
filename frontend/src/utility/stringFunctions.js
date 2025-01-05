@@ -8,7 +8,7 @@ export function title(str) {
 }
 
 // get the device's local date
-export function dateToday(){
+export function getDate(){
   const now = new Date
 
   const date = now.toLocaleDateString('en-US', {
@@ -18,4 +18,18 @@ export function dateToday(){
   });
 
   return date
+}
+
+// get the device's local time
+export function getTime(){
+  const now = new Date
+
+  const time = now.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true
+  });
+
+  return time
 }

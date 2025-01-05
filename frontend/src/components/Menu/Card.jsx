@@ -73,8 +73,8 @@ const Card = ({ product, setBilling, billing }) => {
   }
 
   return (
-    <div className="w-[90%] h-[250px] bg-light rounded-2xl flex items-center font-bold">
-      <div className="w-[40%] h-full flex flex-col gap-6 mt-12">
+    <div className="w-[90%] min-h-[250px] bg-light rounded-2xl flex items-center font-bold p-2">
+      <div className="w-[40%] h-full flex flex-col gap-6">
         <div className="flex flex-col justify-start text-xl -gap-1 ml-[16%]">
           <h1>{product.name}</h1>
           <h1>₱ {price}</h1>
@@ -103,50 +103,51 @@ const Card = ({ product, setBilling, billing }) => {
           </button>
         </div>
       </div>
-      <div className="flex-1 h-[80%] border-l-2 border-primary text-lg">
-        <div className="flex flex-col ml-4">
-          <h1>Size</h1>
-          <div className="flex gap-4 mt-2">
-            <button
-              className={`w-10 h-10 rounded-full text-black text-sm ${
-                radbtn === '16oz' ? 'bg-primary' : 'bg-white'
-              } ${product.price_16oz ? 'block' : 'hidden'}`}
-              onClick={() => {
-                setRadbtn('16oz');
-                cupPrice.current = product.price_16oz;
-                setPrice(cupPrice.current * quantity + addOns.reduce((acc, curr) => acc + curr.price, 0));
-              }}
-            >
-              16oz
-            </button>
-            <button
-              className={`w-10 h-10 rounded-full text-black text-sm ${
-                radbtn === '22oz' ? 'bg-primary' : 'bg-white'
-              } ${product.price_22oz ? 'block' : 'hidden'}`}
-              onClick={() => {
-                setRadbtn('22oz');
-                cupPrice.current = product.price_22oz;
-                setPrice(cupPrice.current * quantity + addOns.reduce((acc, curr) => acc + curr.price, 0));
-              }}
-            >
-              22oz
-            </button>
-          </div>
-          <div>
-            <h1 className="mt-2">Add Ons</h1>
-            <div className="text-sm flex flex-wrap gap-2">
-              {addOnsList.map((e, i) => (
-                <h1
-                  key={i}
-                  className={`p-2 cursor-pointer ${
-                    addOns.includes(e) ? 'bg-primary text-white shadow-lit' : 'bg-white'
-                  }`}
-                  onClick={() => toggleAddOn(e)}
-                >
-                  {e.name}
-                </h1>
-              ))}
-            </div>
+
+      <div className='border-l-2 border-primary min-h-[200px] rounded-full'/>
+
+      <div className="flex flex-col ml-4 text-lg">
+        <h1>Size</h1>
+        <div className="flex gap-4 mt-2">
+          <button
+            className={`w-10 h-10 rounded-full text-black text-sm ${
+              radbtn === '16oz' ? 'bg-primary' : 'bg-white'
+            } ${product.price_16oz ? 'block' : 'hidden'}`}
+            onClick={() => {
+              setRadbtn('16oz');
+              cupPrice.current = product.price_16oz;
+              setPrice(cupPrice.current * quantity + addOns.reduce((acc, curr) => acc + curr.price, 0));
+            }}
+          >
+            16oz
+          </button>
+          <button
+            className={`w-10 h-10 rounded-full text-black text-sm ${
+              radbtn === '22oz' ? 'bg-primary' : 'bg-white'
+            } ${product.price_22oz ? 'block' : 'hidden'}`}
+            onClick={() => {
+              setRadbtn('22oz');
+              cupPrice.current = product.price_22oz;
+              setPrice(cupPrice.current * quantity + addOns.reduce((acc, curr) => acc + curr.price, 0));
+            }}
+          >
+            22oz
+          </button>
+        </div>
+        <div>
+          <h1 className="mt-2">Add Ons</h1>
+          <div className="text-sm flex flex-wrap gap-2">
+            {addOnsList.map((e, i) => (
+              <h1
+                key={i}
+                className={`p-2 cursor-pointer ${
+                  addOns.includes(e) ? 'bg-primary text-white shadow-lit' : 'bg-white'
+                }`}
+                onClick={() => toggleAddOn(e)}
+              >
+                {e.name}
+              </h1>
+            ))}
           </div>
         </div>
       </div>

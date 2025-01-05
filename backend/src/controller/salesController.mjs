@@ -1,12 +1,11 @@
-import historyModel from "../../model/sales/historyModel.mjs";
+import salesModel from "../model/salesModel.mjs"
 
-const historyController = {
+const salesController = {
   addItem: async (req, res) => {
     try {
       const { billing, date, time, mop, ref, total } = req.body;
 
-      // Create a new item
-      const newItem = await historyModel.create({ billing, date, time, mop, ref, total });
+      const newItem = await salesModel.create({ billing, date, time, mop, ref, total });
 
       res.status(201).send({ message: "Transaction added to the history", data: newItem });
     } catch (error) {
@@ -16,9 +15,9 @@ const historyController = {
 
   getByDate: async (req, res) => {
     try {
-      const { date } = req.params; // Get the date from the query parameters
+      const { date } = req.params;
 
-      const items = await historyModel.find({date});
+      const items = await salesModel.find({date});
       res.status(200).send({ message: "All transactions retrieved", data: items });
     } catch (error) {
       res.status(500).send({ message: error.message });
@@ -26,4 +25,4 @@ const historyController = {
   },
 };
 
-export default historyController;
+export default salesController;

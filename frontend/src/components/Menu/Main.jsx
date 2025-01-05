@@ -15,7 +15,7 @@ const Main = ({billing, setBilling}) => {
   }, [category, setCategory])
 
   return (
-    <div className="flex-grow">
+    <div className="w-[65vw]">
       <Header setCategory={setCategory}/>
 
       {laoding && <h1 className='w-full h-full text-3xl text-center'>Loading...</h1>} 

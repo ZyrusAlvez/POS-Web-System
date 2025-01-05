@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const historySchema = new mongoose.Schema(
+const salesSchema = new mongoose.Schema(
   {
     billing: {
       type: mongoose.Schema.Types.Mixed,
@@ -29,6 +29,6 @@ const historySchema = new mongoose.Schema(
   }
 );
 
-const historyModel = mongoose.model("history", historySchema);
+const salesModel = mongoose.model("sales", salesSchema);
 
-export default historyModel;
+export default salesModel;
