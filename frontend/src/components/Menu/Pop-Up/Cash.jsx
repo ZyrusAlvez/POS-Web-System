@@ -65,7 +65,7 @@ const Cash = ({submit, setSubmit, total, billing, setBilling}) => {
   
         setBilling([]);
         await addSales(user?.id, total);
-        await addItem({ billing, date, time });
+        await addItem({ billing, date, time, mop: "Cash", ref: "N/A", total});
   
       } catch (error) {
         console.error('Error processing transaction:', error);

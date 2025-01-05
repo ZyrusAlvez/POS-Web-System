@@ -3,10 +3,10 @@ import historyModel from "../../model/sales/historyModel.mjs";
 const historyController = {
   addItem: async (req, res) => {
     try {
-      const { billing, date, time } = req.body;
+      const { billing, date, time, mop, ref, total } = req.body;
 
       // Create a new item
-      const newItem = await historyModel.create({ billing, date, time });
+      const newItem = await historyModel.create({ billing, date, time, mop, ref, total });
 
       res.status(201).send({ message: "Transaction added to the history", data: newItem });
     } catch (error) {

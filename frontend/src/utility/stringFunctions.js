@@ -6,3 +6,16 @@ export function title(str) {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ');
 }
+
+// get the device's local date
+export function dateToday(){
+  const now = new Date
+
+  const date = now.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  });
+
+  return date
+}

@@ -5,6 +5,7 @@ import { addSales } from "../../../api/user";
 import AuthContext from "../../../context/AuthContext"
 import Button from '../../ui/Button'
 import { MdCancel } from "react-icons/md";
+import { addItem } from "../../../api/sales/history";
 
 const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
   const { user } = useContext(AuthContext)
@@ -56,7 +57,7 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
   
         setBilling([]);
         await addSales(user?.id, total);
-        await addItem({ billing, date, time });
+        await addItem({ billing, date, time, mop: "Gcash", ref: reference, total});
   
       } catch (error) {
         console.error('Error processing transaction:', error);

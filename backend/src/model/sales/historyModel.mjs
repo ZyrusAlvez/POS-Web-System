@@ -14,6 +14,18 @@ const historySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    mop: {
+      type: String,
+      required: true,
+    },
+    ref: {
+      type: String,
+      required: true,
+    },
+    total: {
+      type: Number,
+      required: true,
+    },
   }
 );
 
