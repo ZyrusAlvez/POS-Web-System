@@ -3,7 +3,11 @@ import salesModel from "../model/salesModel.mjs"
 const salesController = {
   addItem: async (req, res) => {
     try {
-      const { billing, date, time, mop, ref, total } = req.body;
+      let { billing, date, time, mop, ref, total } = req.body;
+
+      if(!ref){
+        ref = "No Input";
+      }
 
       const newItem = await salesModel.create({ billing, date, time, mop, ref, total });
 

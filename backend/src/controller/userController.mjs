@@ -133,7 +133,7 @@ const userController = {
   resetSales: async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await userModel.findByIdAndUpdate(id, { sales: 0 }, { new: true });
+      const user = await userModel.findByIdAndUpdate(id, { gcashSales: 0, cashSales: 0 }, { new: true });
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -143,13 +143,31 @@ const userController = {
     }
   },
 
-  addSales: async (req, res) => {
+  addGcashSales: async (req, res) => {
     try {
       const { id } = req.params;
       const { amount } = req.body; // Get the amount to add from the request body
       const user = await userModel.findByIdAndUpdate(
         id,
-        { $inc: { sales: amount } }, // Increment the sales field by the specified amount
+        { $inc: { gcashSales: amount } }, // Increment the sales field by the specified amount
+        { new: true }
+      );
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json({ message: 'Sales added successfully', user });
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  },
+
+  addCashSales: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { amount } = req.body; // Get the amount to add from the request body
+      const user = await userModel.findByIdAndUpdate(
+        id,
+        { $inc: { cashSales: amount } }, // Increment the sales field by the specified amount
         { new: true }
       );
       if (!user) {

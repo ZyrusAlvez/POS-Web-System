@@ -40,8 +40,12 @@ const EmployeeCard = () => {
             <h1>NAME</h1>
           </div>
           <div className="w-full rounded-full bg-white flex justify-between p-4">
-            <h1 className="ml-4 text-base">TOTAL SALES</h1>
-            <h1 className="mr-4 text-5xl font-bold">₱ {user?.sales}</h1>
+            <h1 className="ml-4 text-base">CASH TOTAL SALES</h1>
+            <h1 className="mr-4 text-5xl font-bold">₱ {user?.cashSales}</h1>
+          </div>
+          <div className="w-full rounded-full bg-white flex justify-between p-4">
+            <h1 className="ml-4 text-base">ONLINE-PAYMENT TOTAL SALES</h1>
+            <h1 className="mr-4 text-5xl font-bold">₱ {user?.gcashSales}</h1>
           </div>
           <div className="w-full flex justify-end">
             <Button style="p-2 px-8" onClick={handleReset}>

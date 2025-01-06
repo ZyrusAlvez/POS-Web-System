@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { toast } from 'sonner'
 import { decrementByName } from "../../../api/inventory";
-import { addSales } from "../../../api/user";
+import { addGcashSales } from "../../../api/user";
 import AuthContext from "../../../context/AuthContext"
 import Button from '../../ui/Button'
 import { MdCancel } from "react-icons/md";
@@ -44,8 +44,9 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
         const time = getTime()
   
         setBilling([]);
-        await addSales(user?.id, total);
+        
         await addItem({ billing, date, time, mop: "Gcash", ref: reference, total});
+        await addGcashSales(user?.id, total);
   
       } catch (error) {
         console.error('Error processing transaction:', error);

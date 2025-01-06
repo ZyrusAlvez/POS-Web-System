@@ -12,7 +12,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  sales: {
+  cashSales: {
+    type: Number,
+    default: 0,
+  },
+  gcashSales: {
     type: Number,
     default: 0,
   },

@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { toast } from 'sonner'
 import { decrementByName } from "../../../api/inventory";
-import { addSales } from "../../../api/user";
+import { addCashSales } from "../../../api/user";
 import AuthContext from "../../../context/AuthContext"
 import Button from '../../ui/Button'
 import { MdCancel } from "react-icons/md";
@@ -52,7 +52,7 @@ const Cash = ({submit, setSubmit, total, billing, setBilling}) => {
         const time = getTime()
   
         setBilling([]);
-        await addSales(user?.id, total);
+        await addCashSales(user?.id, total);
         await addItem({ billing, date, time, mop: "Cash", ref: "N/A", total});
   
       } catch (error) {

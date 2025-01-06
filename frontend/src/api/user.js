@@ -52,10 +52,20 @@ export async function resetSales(id) {
   }
 }
 
-export async function addSales(id, amount) {
+export async function addCashSales(id, amount) {
   try {
     const response = await axios
-      .put(`${url}/add-sales/${id}`, { amount });
+      .put(`${url}/add-cash-sales/${id}`, { amount });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+
+export async function addGcashSales(id, amount) {
+  try {
+    const response = await axios
+      .put(`${url}/add-gcash-sales/${id}`, { amount });
     return response.data;
   } catch (error) {
     throw error.response.data;
