@@ -26,7 +26,8 @@ const Sales = () => {
         })
         .catch((err) => console.log(err))
     }, [])
-  console.log(data)
+
+    
   return (
     <div className="flex w-screen">
       <SideBar />

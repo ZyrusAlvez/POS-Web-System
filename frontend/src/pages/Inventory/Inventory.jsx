@@ -1,11 +1,11 @@
 import SideBar from "../../layout/SideBar"
 import Header from "../../components/Inventory/Header"
 import { useState, useEffect } from "react"
-import { getItemByCategory, deleteItem } from "../../api/inventory"
+import { getItemByCategory } from "../../api/inventory"
 import Button from "../../components/ui/Button"
 import { useNavigate } from "react-router-dom"
-import { FaRegTrashCan } from "react-icons/fa6";
-import { toast, Toaster } from 'sonner';
+import { Toaster } from 'sonner';
+import Card from "../../components/Inventory/Card"
 
 const Inventory = () => {
   const navigate = useNavigate()
@@ -17,28 +17,6 @@ const Inventory = () => {
       .then((response) => setData(response.data))
       .catch((error) => console.log(error))
   }, [category])
-
-  function handleClick(item){
-    toast(`Delete ${item.name}?`, {
-      action: {
-        label: 'Yes',
-        onClick: () => handleDelete(item._id)
-      },
-      position: "top-center",
-      className: 'ml-[15%]',
-      duration: 5000,
-    });
-  }
-
-  function handleDelete(id){
-    deleteItem(id)
-      .then(() => {
-        const newData = data.filter((item) => item._id !== id)
-        setData(newData)
-        toast.success('Item deleted successfully')
-      })
-      .catch((error) => console.log(error))
-  }
 
   return (
     <div className="flex h-screen">
@@ -52,17 +30,10 @@ const Inventory = () => {
 
             <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">ITEM</h1>
             <h1 className="border-2 border-primary py-2 px-12 font-bold bg-light">IN STOCK</h1>
-            <h1></h1>
+            <h1 className="font-bold text-center">Action</h1>
 
             {data && data.map((item) => (
-              <>
-                <div className="border-2 border-primary py-2 px-12 bg-light">{item.name}</div>
-                <div className="border-2 border-primary py-2 px-12 bg-light grid grid-cols-2 items-center gap-4">
-                  <h1 className="text-end">{item?.amount}</h1>
-                  <h1 className="text-start">{item?.unit}</h1>
-                </div>
-                <FaRegTrashCan className="text-red-700 text-2xl ml-4 cursor-pointer" onClick={() => handleClick(item)}/>
-              </>
+              <Card key={item._id} item={item} setData={setData} data={data}/>
             ))}
           </div> ) : (
             <h1>Loading...</h1>

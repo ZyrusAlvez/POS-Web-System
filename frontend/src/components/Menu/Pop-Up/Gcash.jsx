@@ -13,8 +13,14 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
   const [reference, setReference] = useState("")
 
   function handleSubmit() {
+    
     async function decrementInventory() {
       try {
+
+        if (reference.length < 4){
+          throw "Reference Number must consist of at least 4 characters"
+        }
+
         for (const item of billing) {
           const ingredients = item.size === "16oz" ? item.product.ingredients_16oz : item.product.ingredients_22oz;
   
@@ -55,9 +61,10 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
     }
   
     toast.promise(decrementInventory(), {
+      style: {textAlign: "center"},
       loading: 'Loading Transaction...',
       success: 'Transaction Successful',
-      error: (error) => `Error: ${error.name} - ${error.message}`,
+      error: (error) => `${error}`,
     });
 
     setSubmit(false)

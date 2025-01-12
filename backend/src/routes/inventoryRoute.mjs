@@ -8,5 +8,6 @@ inventoryRouter.get("/get-by-id/:_id", inventoryController.getItemById)
 inventoryRouter.get("/get-by-category/:category", inventoryController.getItemByCategory);
 inventoryRouter.put("/decrement-by-name/", inventoryController.updateItemByName);
 inventoryRouter.delete("/delete-by-id/:_id", inventoryController.deleteItemById);
+inventoryRouter.put("/update-by-id/:_id", inventoryController.updateStockById)
 
 export default inventoryRouter

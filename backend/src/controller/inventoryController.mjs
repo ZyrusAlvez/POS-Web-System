@@ -115,6 +115,19 @@ const inventoryController = {
       res.status(400).send({ message: error.message });
     }
   },
+
+  updateStockById: async function(req, res){
+    try{
+      const updatedItem = await inventoryModel.findOneAndUpdate({_id: req.params._id}, {amount: req.body.amount}, {new: true})
+      if (!updatedItem){
+        res.status(404).send({message: "Item not found"})
+      }else{
+        res.status(200).send({message: "Item was updated", data: updatedItem})
+      }
+    }catch(error){
+      res.status(400).send({ message: error.message })
+    }
+  }
 };
 
 export default inventoryController;

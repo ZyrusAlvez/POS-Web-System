@@ -5,8 +5,8 @@ const salesController = {
     try {
       let { billing, date, time, mop, ref, total } = req.body;
 
-      if(!ref){
-        ref = "No Input";
+      if(mop == "gcash" && ref.length < 4){
+        res.status(400).send({ message: "Reference Number must consist of at least 4 characters"});
       }
 
       const newItem = await salesModel.create({ billing, date, time, mop, ref, total });

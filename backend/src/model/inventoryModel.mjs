@@ -19,7 +19,7 @@ const inventorySchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    denominator : {
+    denominator : { 
       type: Number,
       default: 0
     },

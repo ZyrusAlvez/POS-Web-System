@@ -44,3 +44,13 @@ export async function decrementByName(data) {
     throw error.response.data;
   }
 }
+
+export async function updateStock(id, data) {
+  try{
+    const response = await axios.put(`${url}/update-by-id/${id}`, {amount: data})
+    return response.data
+  }catch(error){
+    console.log(error)
+    throw error
+  }
+}
