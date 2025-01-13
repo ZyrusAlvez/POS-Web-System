@@ -13,5 +13,6 @@ userRouter.get("/get-user/:id", userController.getUser)
 userRouter.put("/reset-sales/:id", userController.resetSales)
 userRouter.put("/add-cash-sales/:id", userController.addCashSales)
 userRouter.put("/add-gcash-sales/:id", userController.addGcashSales)
+userRouter.put("/updateName-by-id/:_id", userController.updateNameById)
 
 export default userRouter

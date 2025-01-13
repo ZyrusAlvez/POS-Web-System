@@ -177,6 +177,20 @@ const userController = {
     } catch (error) {
       res.status(500).json({ message: 'Server error', error: error.message });
     }
+  },
+
+  updateNameById : async function(req, res){
+    try{
+      console.log("called")
+      const updatedName = await userModel.findOneAndUpdate({_id: req.params._id}, {fullname: req.body.newName}, {new: true})
+      if(!updatedName){
+        res.status(404).send({message: "user not found"})
+      }else{
+        res.status(200).send({message: "user fullname has been updated", data: updatedName})
+      }
+    }catch(error){
+      res.status(400).send({message: error.message})
+    }
   }
 };
 

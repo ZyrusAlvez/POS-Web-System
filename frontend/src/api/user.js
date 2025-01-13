@@ -71,3 +71,13 @@ export async function addGcashSales(id, amount) {
     throw error.response.data;
   }
 }
+
+export async function updateName(id, newName){
+  try{
+    const response = await axios
+    .put(`${url}/updateName-by-id/${id}`, {newName});
+    return response.data;
+  }catch(error){
+    throw error.response.data
+  }
+}

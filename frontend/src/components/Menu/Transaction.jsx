@@ -86,7 +86,7 @@ const Transaction = ({billing, setBilling, setSubmit, total, setTotal, setPaymen
             </div>
             <div className="flex flex-col items-center cursor-pointer" onClick={() => setPayment('gcash')}>
               <FaWallet className={`text-5xl rounded-sm ${payment === 'gcash' ? 'bg-primary' : 'bg-white'}`}/>
-              <h1>GCash</h1>
+              <h1>Online</h1>
             </div>
           </div>
         </div>
