@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://pos-web-system-cvsu.onrender.com/api/sales";
+const url = "http://localhost:3000/api/sales";
 
 export async function getByDate(date) {
   try {

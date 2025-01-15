@@ -16,20 +16,28 @@ const DATABASE = process.env.DATABASE
 const app = express();
 
 app.use(cookieParser()); // Add this middleware to parse cookies
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://pos-web-system.vercel.app'
-];
+
+// const allowedOrigins = [
+//   'http://localhost:5173',
+//   'https://pos-web-system.vercel.app'
+// ];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error('Not allowed by CORS'));
+//       }
+//     },
+//     credentials: true, // Allow cookies and credentials
+//   })
+// );
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: true,
     credentials: true, // Allow cookies and credentials
   })
 );

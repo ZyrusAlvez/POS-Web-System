@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://pos-web-system-cvsu.onrender.com/api/inventory";
+const url = "http://localhost:3000/api/inventory";
 
 export async function addItem(item) {
   try {
