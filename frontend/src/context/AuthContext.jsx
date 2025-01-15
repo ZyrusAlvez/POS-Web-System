@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("checking")
       const response = await axios.get(
-        "http://localhost:3000/api/user/check-auth", 
+        "https://pos-web-system-3.onrender.com/api/user/check-auth", 
         { withCredentials: true } // Include cookies in the request
       );
       setUser(response.data.user); // Set user if authenticated
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/user/log-in", 
+        "https://pos-web-system-3.onrender.com/api/user/log-in", 
         credentials, 
         { withCredentials: true } // Pass cookies
       );      
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/user/log-out", 
+        "https://pos-web-system-3.onrender.com/api/user/log-out", 
         {}, 
         { withCredentials: true } // Pass cookies
       );

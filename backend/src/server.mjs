@@ -18,7 +18,7 @@ const app = express();
 app.use(cookieParser()); // Add this middleware to parse cookies
 app.use(
   cors({
-    origin: true, // Allow all origins
+    origin: "https://pos-web-system.vercel.app",
     credentials: true, // Allow cookies and credentials
   })
 );
@@ -36,7 +36,7 @@ mongoose
     console.log("connected to database")
 
     app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
+      console.log(`Server is running on port ${PORT}`);
     });
 
   })

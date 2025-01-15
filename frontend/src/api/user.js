@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3000/api/user";
+const url = "https://pos-web-system-3.onrender.com/api/user";
 
 export async function getAllUsers() {
   try {
