@@ -73,7 +73,7 @@ const Gcash = ({submit, setSubmit, total, billing, setBilling}) => {
     <div className={`w-screen h-screen ${submit ? 'flex' : 'hidden'} justify-center items-center bg-black bg-opacity-50 fixed top-0 left-0 z-[60]`}>
       <div className='relative h-[40%] w-[55%] min-w-[400px] bg-primary rounded-[2rem] flex flex-col items-center justify-center gap-y-8'>
         <MdCancel className='absolute top-0 right-0 mt-4 mr-4 text-4xl text-red-600 cursor-pointer' onClick={() => setSubmit(false)}/>
-        <h1 className='font-bold text-4xl'>Gcash Payment</h1>
+        <h1 className='font-bold text-4xl'>Online Payment</h1>
         <div className='grid items-center justify-end grid-cols-[auto,auto] gap-4'>
           <h1 className='text-xl font-bold text-end'>Reference Number :</h1>
           <input className='outline-none rounded-full pl-2 text-lg w-[300px]' value={reference} onChange={(e) => setReference(e.target.value)}/>

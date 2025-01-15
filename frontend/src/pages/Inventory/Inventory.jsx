@@ -28,8 +28,8 @@ const Inventory = () => {
         {data ? (
           <div className="grid grid-cols-[auto,auto,auto] text-center py-8 items-center">
 
-            <h1 className="border-2 border-primary py-2 px-16 font-bold bg-light">ITEM</h1>
-            <h1 className="border-2 border-primary py-2 px-12 font-bold bg-light">IN STOCK</h1>
+            <h1 className="border-2 border-primary py-2 min-w-[250px] font-bold bg-light">ITEM</h1>
+            <h1 className="border-2 border-primary py-2 min-w-[250px] font-bold bg-light">IN STOCK</h1>
             <h1 className="font-bold text-center">Action</h1>
 
             {data && data.map((item) => (
@@ -40,7 +40,7 @@ const Inventory = () => {
           )
         }
 
-        <Button style='px-16 py-4 text-lg mt-16 fixed right-0 bottom-0 mb-10 mr-10' onClick={() => navigate("./add-item")}>Add Item</Button>
+        <Button style='px-16 py-4 text-lg mt-16 fixed right-0 top-0 mt-3 mr-10 z-50' onClick={() => navigate("./add-item")}>Add Item</Button>
       </div>
     </div>
   )

@@ -8,6 +8,7 @@ import { deleteItem, updateStock } from "../../api/inventory"
 const Card = ({item, setData, data}) => {
   const [editMode, setEditMode] = useState(false)
   const [newAmount, setNewAmount] = useState(item?.amount)
+  const [newName, setNewName] = useState(item?.name)
 
   function handleClick(item){
     toast(`Delete ${item.name}?`, {
@@ -32,7 +33,7 @@ const Card = ({item, setData, data}) => {
   }
 
   function handleUpdate(){
-    updateStock(item._id, Number(newAmount))
+    updateStock(item._id, Number(newAmount), newName)
     .then((res) => {
       const updatedData = data.map((i) => (i._id === item._id ? res.data : i));
       setData(updatedData);
@@ -44,10 +45,15 @@ const Card = ({item, setData, data}) => {
   
   return (
     <>
-      <div className="border-2 border-primary py-2 px-12 bg-light">{item.name}</div>
-      <div className="border-2 border-primary py-2 px-12 bg-light grid grid-cols-2 items-center gap-4">
+      <div className="border-2 border-primary py-2 bg-light w-[250px]">
         {
-          editMode ? <input className="w-8 text-center outline-none rounded-md" placeholder={item?.amount} onChange={(e) => setNewAmount(e.target.value)} value={newAmount}/> 
+          editMode ? <input className="text-center outline-none rounded-md" placeholder={item?.name} onChange={(e) => setNewName(e.target.value)} value={newName}/> 
+                   : <h1 className='overflow-hidden truncate'>{item?.name}</h1>
+        }
+      </div>
+      <div className="w-[250px] border-2 border-primary py-2 bg-light grid grid-cols-2 gap-4">
+        {
+          editMode ? <input className="w-12 text-center outline-none rounded-md justify-self-end" placeholder={item?.amount} onChange={(e) => setNewAmount(e.target.value)} value={newAmount}/> 
                    : <h1 className="text-end">{item?.amount}</h1>
         }
         <h1 className="text-start">{item?.unit}</h1>
