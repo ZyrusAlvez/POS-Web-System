@@ -18,6 +18,7 @@ const app = express();
 app.use(cookieParser()); // Add this middleware to parse cookies
 const allowedOrigins = [
   'http://localhost:5173',
+  'https://pos-web-system.vercel.app'
 ];
 
 app.use(
