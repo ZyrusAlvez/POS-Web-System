@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://pos-web-system-3.onrender.com/api/product";
+const url = "https://pos-web-system-cvsu.onrender.com/api/product";
 
 export async function getItemByCategory(category) {
   try {
