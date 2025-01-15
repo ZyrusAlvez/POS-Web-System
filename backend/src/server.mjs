@@ -16,12 +16,23 @@ const DATABASE = process.env.DATABASE
 const app = express();
 
 app.use(cookieParser()); // Add this middleware to parse cookies
+const allowedOrigins = [
+  'http://localhost:5173',
+];
+
 app.use(
   cors({
-    origin: "https://pos-web-system.vercel.app",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true, // Allow cookies and credentials
   })
 );
+
 app.use(express.json());
 
 app.use("/api/inventory", inventoryRouter)
